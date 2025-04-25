@@ -9,14 +9,14 @@ import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuPO extends BasePage {
+public class MenuPage extends BasePage {
     @Getter
     private List<CardComponent> cards = new ArrayList<>();;
 
     @FindBy(xpath="//*[@id='app']/div[2]/ul/li")
     private List<WebElement> rootCards ;
 
-    public MenuPO(WebDriver driver) {
+    public MenuPage(WebDriver driver) {
         super(driver);
 
         for(WebElement card: rootCards) {
