@@ -11,10 +11,20 @@ import java.util.List;
 
 public class MenuPage extends BasePage {
     @Getter
-    private List<CardComponent> cards = new ArrayList<>();;
+    private List<CardComponent> cards = new ArrayList<>();
 
+    @Getter
     @FindBy(xpath="//*[@id='app']/div[2]/ul/li")
     private List<WebElement> rootCards ;
+
+    @Getter
+    @FindBy(xpath="//button[@class='pay']")
+    private WebElement totalButton;
+    /*
+    @Getter
+    protected CardsContainer CardsContainer;
+     */
+
 
     public MenuPage(WebDriver driver) {
         super(driver);
