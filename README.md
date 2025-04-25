@@ -1,5 +1,7 @@
 # coffee-cart Automated Tests  
 🧪 **Automated testing for the [coffee-cart.app](https://coffee-cart.app) web application**  
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/UA-1378-TAQC/coffeecart.taqc?utm_source=oss&utm_medium=github&utm_campaign=UA-1378-TAQC%2Fcoffeecart.taqc&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
+
 
 ## 🛠 Technologies & Stack  
 - **Programming Language:** Java 21  
