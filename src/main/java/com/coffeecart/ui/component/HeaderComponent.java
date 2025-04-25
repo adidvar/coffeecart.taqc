@@ -1,5 +1,8 @@
 package com.coffeecart.ui.component;
 
+import com.coffeecart.ui.page.CartPage;
+import com.coffeecart.ui.page.GitHubPage;
+
 import lombok.Getter;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -26,6 +29,13 @@ public class HeaderComponent extends BaseComponent {
         waitUntilElementClickable(cartLink);
         cartLink.click();
         return new CartPage(driver);
+    }
+
+    @Step("Click on GitHub page")
+    public GitHubPage navigateToGitHub() {
+        waitUntilElementClickable(githubLink);
+        githubLink.click();
+        return new GitHubPage(driver);
     }
 
 }
