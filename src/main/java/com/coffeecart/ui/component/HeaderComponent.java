@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.regex.Pattern;
+
 
 public class HeaderComponent extends BaseComponent {
     @Getter
@@ -48,4 +50,8 @@ public class HeaderComponent extends BaseComponent {
         return new GitHubPage(driver);
     }
 
+    public String getTotalNumberItemsFromCartLink() {
+        String linkText = cartLink.getText();
+        return Pattern.compile("\\d").matcher(linkText).group();
+    }
 }
