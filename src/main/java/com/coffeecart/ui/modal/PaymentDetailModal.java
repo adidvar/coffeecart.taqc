@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 @Getter
-public class PaymentDetail extends BaseModal {
+public class PaymentDetailModal extends BaseModal {
     @FindBy(id = "name")
     private WebElement name;
     @FindBy(id = "email")
@@ -16,7 +16,7 @@ public class PaymentDetail extends BaseModal {
     @FindBy(id = "promotion")
     private WebElement subscriptionCheckbox;
 
-    public PaymentDetail(WebDriver driver, WebElement rootElement) {
+    public PaymentDetailModal(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
     }
 
