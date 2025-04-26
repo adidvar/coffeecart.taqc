@@ -33,15 +33,15 @@ public class Drink {
         return getIngredientQuantity(ingredients.getName());
     }
 
-    public double getPrice() {
-        double sum = 0.0;
-        for (DrinkIngredient d : asCollection()) {
-            sum += (double)d.getQuantity() * d.getIngredient().getUnit_cost();
-        }
-        return sum;
-    }
-    public String getFormattedPrice() {
-        NumberFormat nf = NumberFormat.getCurrencyInstance();
-        return nf.format(getPrice());
-    }
+//    public double getPrice() {
+//        double sum = 0.0;
+//        for (DrinkIngredient d : asCollection()) {
+//            sum += (double)d.getQuantity() * d.getIngredient().getUnit_cost();
+//        }
+//        return sum;
+//    }
+//    public String getFormattedPrice() {
+//        NumberFormat nf = NumberFormat.getCurrencyInstance();
+//        return nf.format(getPrice());
+//    }
 }
