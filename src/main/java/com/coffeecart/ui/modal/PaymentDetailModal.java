@@ -7,13 +7,14 @@ import org.openqa.selenium.support.FindBy;
 
 @Getter
 public class PaymentDetailModal extends BaseModal {
-    @FindBy(id = "name")
+    //div[@class='modal']/div[@class='modal-content size']
+    @FindBy(xpath = "./form[@id='name']")
     private WebElement name;
-    @FindBy(id = "email")
+    @FindBy(xpath = "./form[@id='email']")
     private WebElement email;
-    @FindBy(id = "submit-payment")
+    @FindBy(xpath = "./form[@id='submit-payment']")
     private WebElement submitButton;
-    @FindBy(id = "promotion")
+    @FindBy(xpath = "./form[@id='promotion']")
     private WebElement subscriptionCheckbox;
 
     public PaymentDetailModal(WebDriver driver, WebElement rootElement) {
@@ -35,5 +36,7 @@ public class PaymentDetailModal extends BaseModal {
     public void markCheckbox(){
         getSubmitButton().click();
     }
+    //happy -  menue
+    //failed - this
 
 }
