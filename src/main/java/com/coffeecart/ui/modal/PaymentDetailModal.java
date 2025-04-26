@@ -37,19 +37,19 @@ public class PaymentDetailModal extends BaseModal {
     }
 
     public MenuPage clickSubmitButtonValid() {
-        waitUntilElementVisible(submitButton);
-        submitButton.click();
+        waitUntilElementVisible(getSubmitButton());
+        getSubmitButton().click();
         return new MenuPage(driver);
     }
 
     public PaymentDetailModal clickSubmitButtonInValid() {
-        waitUntilElementVisible(submitButton);
-        submitButton.click();
+        waitUntilElementVisible(getSubmitButton());
+        getSubmitButton().click();
         return this;
     }
 
     public String getSubmitButtonText() {
-        return submitButton.getText();
+        return getSubmitButton().getText();
     }
 
 }
