@@ -13,6 +13,8 @@ public class PaymentDetail extends BaseModal {
     private WebElement email;
     @FindBy(id = "submit-payment")
     private WebElement submitButton;
+    @FindBy(id = "promotion")
+    private WebElement subscriptionCheckbox;
 
     public PaymentDetail(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
@@ -27,6 +29,10 @@ public class PaymentDetail extends BaseModal {
     }
 
     public void submit() {
+        getSubmitButton().click();
+    }
+
+    public void markCheckbox(){
         getSubmitButton().click();
     }
 
