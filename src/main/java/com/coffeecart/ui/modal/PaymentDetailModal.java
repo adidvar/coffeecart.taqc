@@ -1,20 +1,23 @@
 package com.coffeecart.ui.modal;
 
+import com.coffeecart.ui.page.MenuPage;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-@Getter
 public class PaymentDetailModal extends BaseModal {
-    //div[@class='modal']/div[@class='modal-content size']
-    @FindBy(xpath = "./form[@id='name']")
+    @Getter
+    @FindBy(xpath = ".//input[@id='name']")
     private WebElement name;
-    @FindBy(xpath = "./form[@id='email']")
+    @Getter
+    @FindBy(xpath = ".//input[@id='email']")
     private WebElement email;
-    @FindBy(xpath = "./form[@id='submit-payment']")
+    @Getter
+    @FindBy(xpath = ".//input[@id='submit-payment']")
     private WebElement submitButton;
-    @FindBy(xpath = "./form[@id='promotion']")
+    @Getter
+    @FindBy(xpath = ".//input[@id='promotion']")
     private WebElement subscriptionCheckbox;
 
     public PaymentDetailModal(WebDriver driver, WebElement rootElement) {
@@ -29,14 +32,24 @@ public class PaymentDetailModal extends BaseModal {
         getEmail().sendKeys(email);
     }
 
-    public void submit() {
+    public void markCheckbox() {
         getSubmitButton().click();
     }
 
-    public void markCheckbox(){
-        getSubmitButton().click();
+    public MenuPage clickSubmitButtonValid() {
+        waitUntilElementVisible(submitButton);
+        submitButton.click();
+        return new MenuPage(driver);
     }
-    //happy -  menue
-    //failed - this
+
+    public PaymentDetailModal clickSubmitButtonInValid() {
+        waitUntilElementVisible(submitButton);
+        submitButton.click();
+        return this;
+    }
+
+    public String getSubmitButtonText() {
+        return submitButton.getText();
+    }
 
 }
