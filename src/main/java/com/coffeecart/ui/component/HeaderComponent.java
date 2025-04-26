@@ -9,6 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class HeaderComponent extends BaseComponent {
     @Getter
@@ -46,6 +49,16 @@ public class HeaderComponent extends BaseComponent {
         waitUntilElementClickable(githubLink);
         githubLink.click();
         return new GitHubPage(driver);
+    }
+
+    public String getTotalNumberItemsFromCartLink(){
+        String linkText = cartLink.getText();
+        Matcher match = Pattern.compile(linkText).matcher("cart(5)");
+        if(match.find()){
+            return match.group();
+        }else{
+            throw new RuntimeException("Something wrong with link text.");
+        }
     }
 
 }
