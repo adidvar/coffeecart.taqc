@@ -27,16 +27,19 @@ public class PaymentDetailModal extends BaseModal {
 
     @Step("Enter name")
     public void enterName(String name) {
+        waitUntilElementVisible(getName());
         getName().sendKeys(name);
     }
 
     @Step("Enter email")
     public void enterEmail(String email) {
+        waitUntilElementVisible(getEmail());
         getEmail().sendKeys(email);
     }
 
     @Step("Mark the check box")
     public void markCheckbox() {
+        waitUntilElementVisible(getSubmitButton());
         getSubmitButton().click();
     }
 
@@ -56,6 +59,7 @@ public class PaymentDetailModal extends BaseModal {
 
     @Step("Submit button get text")
     public String getSubmitButtonText() {
+        waitUntilElementVisible(getSubmitButton());
         return getSubmitButton().getText();
     }
 
