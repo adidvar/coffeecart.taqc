@@ -14,7 +14,7 @@ public class PaymentDetail extends BaseModal {
     @FindBy(id = "submit-payment")
     private WebElement submitButton;
     @FindBy(id = "promotion")
-    private WebElement subscriptionCheckbox;
+    private WebElement subscriptionCheckbo;
 
     public PaymentDetail(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
