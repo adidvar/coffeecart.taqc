@@ -40,11 +40,6 @@ public class CartPage extends BasePage {
         }
     }
 
-//    @Step("Click on the Total button")
-//    public PaymentDetailModal clickOnTotalButton(){
-////        return totalButton.click();
-//    }
-
     @Step("Clean the cart")
     public CartPage cleanCart() {
         for (FullItemComponent fullItem : fullItems) {
