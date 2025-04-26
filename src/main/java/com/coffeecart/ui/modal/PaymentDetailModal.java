@@ -1,6 +1,7 @@
 package com.coffeecart.ui.modal;
 
 import com.coffeecart.ui.page.MenuPage;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,30 +25,36 @@ public class PaymentDetailModal extends BaseModal {
         super(driver, rootElement);
     }
 
+    @Step("Enter name")
     public void enterName(String name) {
         getName().sendKeys(name);
     }
 
+    @Step("Enter email")
     public void enterEmail(String email) {
         getEmail().sendKeys(email);
     }
 
+    @Step("Mark the check box")
     public void markCheckbox() {
         getSubmitButton().click();
     }
 
+    @Step("Submit button click with valid values")
     public MenuPage clickSubmitButtonValid() {
         waitUntilElementVisible(getSubmitButton());
         getSubmitButton().click();
         return new MenuPage(driver);
     }
 
+    @Step("Submit button click with invalid values")
     public PaymentDetailModal clickSubmitButtonInValid() {
         waitUntilElementVisible(getSubmitButton());
         getSubmitButton().click();
         return this;
     }
 
+    @Step("Submit button get text")
     public String getSubmitButtonText() {
         return getSubmitButton().getText();
     }
