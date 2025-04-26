@@ -9,10 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-<<<<<<< HEAD
 import java.util.regex.Matcher;
-=======
->>>>>>> dev
 import java.util.regex.Pattern;
 
 
@@ -54,11 +51,11 @@ public class HeaderComponent extends BaseComponent {
         return new GitHubPage(driver);
     }
 
-    public String getTotalNumberItemsFromCartLink(){
+    public int getTotalNumberItemsFromCartLink(){
         String linkText = cartLink.getText();
-        Matcher match = Pattern.compile(linkText).matcher("cart(5)");
+        Matcher match = Pattern.compile("(\\d+)").matcher(linkText);
         if(match.find()){
-            return match.group();
+            return Integer.parseInt(match.group());
         }else{
             throw new RuntimeException("Something wrong with link text.");
         }
