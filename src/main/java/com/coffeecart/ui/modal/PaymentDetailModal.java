@@ -28,13 +28,13 @@ public class PaymentDetailModal extends BaseModal {
         super(driver, rootElement);
     }
 
-    @Step("Enter name")
+    @Step("Set Name Input {name}")
     public void enterName(String name) {
         waitUntilElementVisible(getName());
         getName().sendKeys(name);
     }
 
-    @Step("Enter email")
+    @Step("Set Email Input {email}")
     public void enterEmail(String email) {
         waitUntilElementVisible(getEmail());
         getEmail().sendKeys(email);
