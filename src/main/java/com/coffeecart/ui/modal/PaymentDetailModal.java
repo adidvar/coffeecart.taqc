@@ -39,8 +39,8 @@ public class PaymentDetailModal extends BaseModal {
 
     @Step("Mark the check box")
     public void markCheckbox() {
-        waitUntilElementVisible(getSubmitButton());
-        getSubmitButton().click();
+        waitUntilElementVisible(getSubscriptionCheckbox());
+        getSubscriptionCheckbox().click();
     }
 
     @Step("Submit button click with valid values")
