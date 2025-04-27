@@ -18,8 +18,13 @@ public class GitHubPage extends BasePage {
     @Step("Get page links")
     public List<String> getPageLinks() {
         waitUntilAllElementsVisible(pageLinks);
-        return pageLinks.stream()
+        return getPageLinksElements().stream()
                 .map(link -> link.getDomAttribute("href"))
                 .toList();
     }
+
+    public List<WebElement> getPageLinksElements() {
+        return List.copyOf(pageLinks);
+    }
+
 }
