@@ -29,21 +29,24 @@ public class PaymentDetailModal extends BaseModal {
     }
 
     @Step("Set Name Input {name}")
-    public void enterName(String name) {
+    public BaseModal enterName(String name) {
         waitUntilElementVisible(getName());
         getName().sendKeys(name);
+        return this;
     }
 
     @Step("Set Email Input {email}")
-    public void enterEmail(String email) {
+    public BaseModal enterEmail(String email) {
         waitUntilElementVisible(getEmail());
         getEmail().sendKeys(email);
+        return this;
     }
 
     @Step("Mark the check box")
-    public void markCheckbox() {
+    public BaseModal markCheckbox() {
         waitUntilElementVisible(getSubscriptionCheckbox());
         getSubscriptionCheckbox().click();
+        return this;
     }
 
     @Step("Submit button click with valid values")
