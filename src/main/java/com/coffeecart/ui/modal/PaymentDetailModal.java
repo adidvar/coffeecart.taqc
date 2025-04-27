@@ -51,21 +51,21 @@ public class PaymentDetailModal extends BaseModal {
     }
 
     @Step("Submit button click with valid values on the Menu page")
-    public MenuPage clickSubmitButtonWithValidOnMenuPage() {
+    public MenuPage clickSubmitButtonOnMenuPage() {
         waitUntilElementVisible(getSubmitButton());
         getSubmitButton().click();
         return new MenuPage(driver);
     }
 
     @Step("Submit button click with valid values on the Cart page")
-    public CartPage clickSubmitButtonWithValidOnCartPage() {
+    public CartPage clickSubmitButtonOnCartPage() {
         waitUntilElementVisible(getSubmitButton());
         getSubmitButton().click();
         return new CartPage(driver);
     }
 
     @Step("Submit button click with invalid values")
-    public PaymentDetailModal clickSubmitButtonInValid() {
+    public PaymentDetailModal clickSubmitButtonWithInvalidInput() {
         waitUntilElementVisible(getSubmitButton());
         getSubmitButton().click();
         return this;
@@ -78,14 +78,14 @@ public class PaymentDetailModal extends BaseModal {
     }
 
     @Step("Close modal window on MenuPage")
-    public MenuPage closeModalWindowButtonOnMenuPage() {
+    public MenuPage closeModalWindowOnMenuPage() {
         waitUntilElementVisible(getCloseModalWindowButton());
         getCloseModalWindowButton().click();
         return new MenuPage(driver);
     }
 
     @Step("Close modal window on CartPage")
-    public CartPage closeModalWindowButtonOnCartPage() {
+    public CartPage closeModalWindowOnCartPage() {
         waitUntilElementVisible(getCloseModalWindowButton());
         getCloseModalWindowButton().click();
         return new CartPage(driver);
