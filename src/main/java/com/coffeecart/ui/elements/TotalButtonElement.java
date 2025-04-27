@@ -12,22 +12,25 @@ public class TotalButtonElement extends BaseElement {
     @FindBy(xpath = ".//button[@class='pay']")
     WebElement totalButton;
 
-    PaymentDetail paymentDetail;
+    @FindBy(xpath = ".//ul[@class='cart-preview']")
+    WebElement cardComponentElement;
 
-    CartComponent cartComponent ;
+    @FindBy(xpath = "//div[@class='modal']")
+    WebElement modalElement;
+
+    CartComponent cartComponent;
 
     Actions actions;
 
     public TotalButtonElement(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
-        paymentDetail = new PaymentDetail(driver, rootElement); // maybe use / as root element here
-        cartComponent = new CartComponent(driver, rootElement);
+        cartComponent = new CartComponent(driver, cardComponentElement);
         actions = new Actions(driver);
     }
 
     public PaymentDetail click(){
         totalButton.click();
-        return paymentDetail;
+        return new PaymentDetail(driver,modalElement);
     }
 
     public double getMoneyCounter() {
