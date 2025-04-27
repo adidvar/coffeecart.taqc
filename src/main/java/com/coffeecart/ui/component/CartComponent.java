@@ -21,9 +21,9 @@ public class CartComponent extends BaseComponent {
         super(driver, rootElement);
     }
 
-    public List<ShortButtonComponent> getShortItems() {
+    public List<ShortItemComponent> getShortItems() {
         return shortItemElements.stream()
-                .map(element -> new ShortButtonComponent(driver, element))
+                .map(element -> new ShortItemComponent(driver, element))
                 .collect(Collectors.toList());
     }
 
