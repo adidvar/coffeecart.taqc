@@ -1,39 +1,58 @@
 package com.coffeecart.ui.modal;
 
+import com.coffeecart.ui.component.CupComponent;
+import com.coffeecart.ui.page.MenuPage;
+import io.qameta.allure.Step;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LuckyDayModal extends BaseModal {
 
-    private WebElement title; // // «It's your lucky day! ...»
+    @Getter
+    @FindBy(xpath = ".//span")
+    private WebElement title;
 
-    private WebElement yesBtn; // «Yes, of course!»
+    @Getter
+    @FindBy(xpath = ".//button[contains(@class,'yes')]")
+    private WebElement yesBtn;
 
-    private WebElement skipBtn; // «Nah, I'll skip.»
+    @Getter
+    @FindBy(xpath = ".//button[not(contains(@class,'yes'))]")
+    private WebElement skipBtn;
+
+    @Getter
+    @FindBy(xpath = ".//div[contains(@class,'cup-body')]")
+    private WebElement cupRoot;
+
+    private final CupComponent cupComponent;
 
     public LuckyDayModal(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
+        this.cupComponent = new CupComponent(driver, cupRoot);
     }
 
-    public void clickYes() {
+    @Step("Click «Yes, of course!»")
+    public MenuPage clickYes() {
         clickDynamicElement(yesBtn);
+        waitUntilClosed();
+        return new MenuPage(driver);
     }
 
-    public void clickSkip() {
+    @Step("Click «Nah, I'll skip.»")
+    public MenuPage clickSkip() {
         clickDynamicElement(skipBtn);
+        waitUntilClosed();
+        return new MenuPage(driver);
     }
 
-    public boolean isDisplayed() {
-        return title.isDisplayed();
-    }
+    public boolean isDisplayed() { return title.isDisplayed(); }
 
-    /* ---------- Очікування появи / зникнення ---------- */
+    /** Чекаємо появи модалки */
+    public void waitUntilOpened() { waitUntilElementVisible(title); }
 
-    public void waitUntilOpened() {
-        waitUntilElementVisible(title);
-    }
+    /** Чекаємо зникнення модалки */
+    public void waitUntilClosed() { waitUntilElementInvisible(rootElement); }
 
-    public void waitUntilClosed() {
-        waitUntilElementInvisible(rootElement);
-    }
 }
