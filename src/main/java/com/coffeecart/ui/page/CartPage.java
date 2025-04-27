@@ -29,7 +29,7 @@ public class CartPage extends BasePage {
     private WebElement rootTotalButton;
 
     @Getter
-    @FindBy(xpath = "//div[@class='list']/p[contains(text(),'No coffee, go add some.')]")
+    @FindBy(xpath = "//div[@class='list']/p")
     private WebElement emptyCartMessage;
 
     public CartPage(WebDriver driver) {
@@ -47,37 +47,38 @@ public class CartPage extends BasePage {
 
     @Step("Clean the cart")
     public CartPage cleanCart() {
-        for (FullItemComponent fullItem : fullItems) {
+        List<FullItemComponent> itemsToRemove = new ArrayList<>(fullItems);
+        for (FullItemComponent fullItem : itemsToRemove) {
             fullItem.clickOnDeleteButton();
         }
         return this;
     }
 
-    @Step("Delete the item from the cart")
+    @Step("Delete the item {itemName} from the cart")
     public CartPage deleteItemFromCart(String itemName) {
         FullItemComponent fullItem = getFullItemByName(itemName);
         return fullItem.clickOnDeleteButton();
     }
 
-    @Step("Increase number of items")
+    @Step("Increase number of items with name {itemName}")
     public CartPage increaseNumberOfItems(String itemName) {
         FullItemComponent fullItem = getFullItemByName(itemName);
         return fullItem.clickOnAddButton();
     }
 
-    @Step("Increase number of items n times")
+    @Step("Increase number of items {times} times with name {itemName}")
     public CartPage increaseNumberOfItems(String itemName, int times) {
         FullItemComponent fullItem = getFullItemByName(itemName);
         return fullItem.clickOnAddButton(times);
     }
 
-    @Step("Remove number of items")
+    @Step("Remove number of items with name {itemName}")
     public CartPage removeNumberOfItems(String itemName) {
         FullItemComponent fullItem = getFullItemByName(itemName);
         return fullItem.clickOnRemoveButton();
     }
 
-    @Step("Remove number of items n times")
+    @Step("Remove number of items {times} times with name {itemName}")
     public CartPage removeNumberOfItems(String itemName, int times) {
         FullItemComponent fullItem = getFullItemByName(itemName);
         return fullItem.clickOnRemoveButton(times);
@@ -85,11 +86,7 @@ public class CartPage extends BasePage {
 
     public FullItemComponent getFullItemByName(String itemName) {
         Optional<FullItemComponent> component = fullItems.stream().filter(item -> item.getItemLabelString().equals(itemName)).findAny();
-        if (component.isPresent()) {
-            return component.get();
-        } else {
-            throw new RuntimeException("No component found");
-        }
+        return component.orElse(null);
     }
 
     public int getTotalNumberOfItemsFromCart() {
@@ -98,10 +95,6 @@ public class CartPage extends BasePage {
 
     public double getSumOfTotalPricesFromCart() {
         return fullItems.stream().mapToDouble(FullItemComponent::getTotalPriceAsNumber).sum();
-    }
-
-    public double getSumOfPricesOfOneUnitFromCart() {
-        return fullItems.stream().mapToDouble(FullItemComponent::getPriceOfOneUnit).sum();
     }
 
     @Step("Navigate to the Menu Page")
