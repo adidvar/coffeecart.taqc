@@ -2,7 +2,6 @@ package com.coffeecart.ui.page;
 
 import com.coffeecart.ui.component.FullItemComponent;
 import com.coffeecart.ui.elements.TotalButtonElement;
-import com.coffeecart.ui.modal.PaymentDetail;
 import com.coffeecart.ui.modal.PaymentDetailModal;
 import io.qameta.allure.Step;
 import lombok.Getter;
@@ -42,7 +41,7 @@ public class CartPage extends BasePage {
     }
 
     @Step("Click on the Total button")
-    public PaymentDetail clickOnTotalButton() {
+    public PaymentDetailModal clickOnTotalButton() {
         return totalButton.clickTotalButton();
     }
 

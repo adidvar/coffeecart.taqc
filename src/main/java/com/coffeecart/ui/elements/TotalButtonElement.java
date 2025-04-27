@@ -1,7 +1,7 @@
 package com.coffeecart.ui.elements;
 
 import com.coffeecart.ui.component.CartComponent;
-import com.coffeecart.ui.modal.PaymentDetail;
+import com.coffeecart.ui.modal.PaymentDetailModal;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,10 +32,10 @@ public class TotalButtonElement extends BaseElement {
         actions = new Actions(driver);
     }
 
-    public PaymentDetail clickTotalButton(){
+    public PaymentDetailModal clickTotalButton(){
         waitUntilElementClickable(totalButton);
         totalButton.click();
-        return new PaymentDetail(driver,modalElement);
+        return new PaymentDetailModal(driver,modalElement);
     }
 
     public double getMoneyCounter() {
