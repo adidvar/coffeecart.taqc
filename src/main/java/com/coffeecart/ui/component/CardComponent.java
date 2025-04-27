@@ -34,7 +34,7 @@ public class CardComponent extends BaseComponent {
     }
 
     public String getCardColor() {
-        return rootElement.getAttribute("class"); // If color is determined by a CSS class
+        return rootElement.getCssValue("background-color");
     }
 
     public CupComponent getCupComponent() {
