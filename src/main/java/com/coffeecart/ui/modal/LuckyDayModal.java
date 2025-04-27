@@ -8,18 +8,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-@Getter
 public class LuckyDayModal extends BaseModal {
 
+    @Getter
     @FindBy(xpath = ".//span")
     private WebElement title;
 
+    @Getter
     @FindBy(xpath = ".//button[contains(@class,'yes')]")
     private WebElement yesBtn;
 
+    @Getter
     @FindBy(xpath = ".//button[not(contains(@class,'yes'))]")
     private WebElement skipBtn;
 
+    @Getter
     @FindBy(xpath = ".//div[contains(@class,'cup-body')]")
     private WebElement cupRoot;
 
