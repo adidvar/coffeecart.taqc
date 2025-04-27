@@ -2,6 +2,7 @@ package com.coffeecart.ui.page;
 
 import com.coffeecart.ui.component.FullItemComponent;
 import com.coffeecart.ui.elements.TotalButtonElement;
+import com.coffeecart.ui.modal.PaymentDetail;
 import com.coffeecart.ui.modal.PaymentDetailModal;
 import io.qameta.allure.Step;
 import lombok.Getter;
@@ -25,7 +26,7 @@ public class CartPage extends BasePage {
     private List<WebElement> rootFullItems;
 
     @Getter
-    @FindBy(xpath = "//div[@class='pay-container']/button[contains(.,'Total:')]")
+    @FindBy(xpath = "//div[@class='pay-container']")
     private WebElement rootTotalButton;
 
     @Getter
@@ -38,6 +39,11 @@ public class CartPage extends BasePage {
         for (WebElement fullItem : rootFullItems) {
             fullItems.add(new FullItemComponent(driver, fullItem));
         }
+    }
+
+    @Step("Click on the Total button")
+    public PaymentDetail clickOnTotalButton() {
+        return totalButton.clickTotalButton();
     }
 
     @Step("Clean the cart")
