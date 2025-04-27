@@ -1,17 +1,20 @@
 package com.coffeecart.ui.modal;
 
+import com.coffeecart.ui.page.MenuPage;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class AddModal extends BaseModal {
 
+    @Getter
     @FindBy(xpath = ".//h2[contains(text(), 'Add')]")
     private WebElement modalTitle;
-
+    @Getter
     @FindBy(xpath = ".//button[contains(text(), 'Yes')]")
     private WebElement yesButton;
-
+    @Getter
     @FindBy(xpath = ".//button[contains(text(), 'No')]")
     private WebElement noButton;
 
@@ -35,20 +38,18 @@ public class AddModal extends BaseModal {
         return "";
     }
 
-    public void clickYes() {
+    public MenuPage clickYes() {
         clickDynamicElement(yesButton);
+        return new MenuPage(driver);
     }
 
-    public void clickNo() {
+    public MenuPage clickNo() {
         clickDynamicElement(noButton);
+        return new MenuPage(driver);
     }
 
     public boolean isModalDisplayed() {
-        try {
-            return modalTitle.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return modalTitle.isDisplayed();
     }
 }
 
