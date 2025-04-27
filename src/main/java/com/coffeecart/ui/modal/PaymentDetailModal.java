@@ -20,6 +20,9 @@ public class PaymentDetailModal extends BaseModal {
     @Getter
     @FindBy(xpath = ".//input[@id='promotion']")
     private WebElement subscriptionCheckbox;
+    @Getter
+    @FindBy(xpath = ".//section/button")
+    private WebElement closeModalWindowButton;
 
     public PaymentDetailModal(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
@@ -61,6 +64,13 @@ public class PaymentDetailModal extends BaseModal {
     public String getSubmitButtonText() {
         waitUntilElementVisible(getSubmitButton());
         return getSubmitButton().getText();
+    }
+
+    @Step("Close modal window")
+    public MenuPage closeModalWindowButton() {
+        waitUntilElementVisible(getCloseModalWindowButton());
+        getCloseModalWindowButton().click();
+        return new MenuPage(driver);
     }
 
 }
