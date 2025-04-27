@@ -1,5 +1,6 @@
 package com.coffeecart.ui.modal;
 
+import com.coffeecart.ui.page.CartPage;
 import com.coffeecart.ui.page.MenuPage;
 import io.qameta.allure.Step;
 import lombok.Getter;
@@ -15,7 +16,7 @@ public class PaymentDetailModal extends BaseModal {
     @FindBy(xpath = ".//input[@id='email']")
     private WebElement email;
     @Getter
-    @FindBy(xpath = ".//input[@id='submit-payment']")
+    @FindBy(xpath = ".//button[@id='submit-payment']")
     private WebElement submitButton;
     @Getter
     @FindBy(xpath = ".//input[@id='promotion']")
@@ -29,21 +30,21 @@ public class PaymentDetailModal extends BaseModal {
     }
 
     @Step("Set Name Input {name}")
-    public BaseModal enterName(String name) {
+    public PaymentDetailModal enterName(String name) {
         waitUntilElementVisible(getName());
         getName().sendKeys(name);
         return this;
     }
 
     @Step("Set Email Input {email}")
-    public BaseModal enterEmail(String email) {
+    public PaymentDetailModal enterEmail(String email) {
         waitUntilElementVisible(getEmail());
         getEmail().sendKeys(email);
         return this;
     }
 
     @Step("Mark the check box")
-    public BaseModal markCheckbox() {
+    public PaymentDetailModal markCheckbox() {
         waitUntilElementVisible(getSubscriptionCheckbox());
         getSubscriptionCheckbox().click();
         return this;
@@ -69,11 +70,18 @@ public class PaymentDetailModal extends BaseModal {
         return getSubmitButton().getText();
     }
 
-    @Step("Close modal window")
-    public MenuPage closeModalWindowButton() {
+    @Step("Close modal window on MenuPage")
+    public MenuPage closeModalWindowButtonOnMenuPage() {
         waitUntilElementVisible(getCloseModalWindowButton());
         getCloseModalWindowButton().click();
         return new MenuPage(driver);
+    }
+
+    @Step("Close modal window on CartPage")
+    public CartPage closeModalWindowButtonOnCartPage() {
+        waitUntilElementVisible(getCloseModalWindowButton());
+        getCloseModalWindowButton().click();
+        return new CartPage(driver);
     }
 
 }
