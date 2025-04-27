@@ -33,6 +33,10 @@ public class CardComponent extends BaseComponent {
         return Double.parseDouble(priceText);
     }
 
+    public String getCardColor() {
+        return rootElement.getAttribute("class"); // If color is determined by a CSS class
+    }
+
     public CupComponent getCupComponent() {
         return cupComponent;
     }
