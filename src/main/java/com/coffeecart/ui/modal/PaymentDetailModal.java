@@ -50,11 +50,18 @@ public class PaymentDetailModal extends BaseModal {
         return this;
     }
 
-    @Step("Submit button click with valid values")
-    public MenuPage clickSubmitButtonValid() {
+    @Step("Submit button click with valid values on the Menu page")
+    public MenuPage clickSubmitButtonWithValidOnMenuPage() {
         waitUntilElementVisible(getSubmitButton());
         getSubmitButton().click();
         return new MenuPage(driver);
+    }
+
+    @Step("Submit button click with valid values on the Cart page")
+    public CartPage clickSubmitButtonWithValidOnCartPage() {
+        waitUntilElementVisible(getSubmitButton());
+        getSubmitButton().click();
+        return new CartPage(driver);
     }
 
     @Step("Submit button click with invalid values")
