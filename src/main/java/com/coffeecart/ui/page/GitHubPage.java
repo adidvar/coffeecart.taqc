@@ -20,7 +20,6 @@ public class GitHubPage extends BasePage {
 
     @Step("Handle page links")
     public GitHubPage handlePageLinks(Consumer<List<String>> linksConsumer) {
-        waitUntilAllElementsVisible(getPageLinks());
         List<String> links = getPageLinks().stream()
                 .map(link -> link.getDomAttribute("href"))
                 .toList();
