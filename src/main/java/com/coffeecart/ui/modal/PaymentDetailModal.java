@@ -1,5 +1,6 @@
 package com.coffeecart.ui.modal;
 
+import com.coffeecart.ui.page.CartPage;
 import com.coffeecart.ui.page.MenuPage;
 import io.qameta.allure.Step;
 import lombok.Getter;
@@ -15,43 +16,56 @@ public class PaymentDetailModal extends BaseModal {
     @FindBy(xpath = ".//input[@id='email']")
     private WebElement email;
     @Getter
-    @FindBy(xpath = ".//input[@id='submit-payment']")
+    @FindBy(xpath = ".//button[@id='submit-payment']")
     private WebElement submitButton;
     @Getter
     @FindBy(xpath = ".//input[@id='promotion']")
     private WebElement subscriptionCheckbox;
+    @Getter
+    @FindBy(xpath = ".//section/button")
+    private WebElement closeModalWindowButton;
 
     public PaymentDetailModal(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
     }
 
-    @Step("Enter name")
-    public void enterName(String name) {
+    @Step("Set Name Input {name}")
+    public PaymentDetailModal enterName(String name) {
         waitUntilElementVisible(getName());
         getName().sendKeys(name);
+        return this;
     }
 
-    @Step("Enter email")
-    public void enterEmail(String email) {
+    @Step("Set Email Input {email}")
+    public PaymentDetailModal enterEmail(String email) {
         waitUntilElementVisible(getEmail());
         getEmail().sendKeys(email);
+        return this;
     }
 
     @Step("Mark the check box")
-    public void markCheckbox() {
-        waitUntilElementVisible(getSubmitButton());
-        getSubmitButton().click();
+    public PaymentDetailModal markCheckbox() {
+        waitUntilElementVisible(getSubscriptionCheckbox());
+        getSubscriptionCheckbox().click();
+        return this;
     }
 
-    @Step("Submit button click with valid values")
-    public MenuPage clickSubmitButtonValid() {
+    @Step("Submit button click with valid values on the Menu page")
+    public MenuPage clickSubmitButtonOnMenuPage() {
         waitUntilElementVisible(getSubmitButton());
         getSubmitButton().click();
         return new MenuPage(driver);
     }
 
+    @Step("Submit button click with valid values on the Cart page")
+    public CartPage clickSubmitButtonOnCartPage() {
+        waitUntilElementVisible(getSubmitButton());
+        getSubmitButton().click();
+        return new CartPage(driver);
+    }
+
     @Step("Submit button click with invalid values")
-    public PaymentDetailModal clickSubmitButtonInValid() {
+    public PaymentDetailModal clickSubmitButtonWithInvalidInput() {
         waitUntilElementVisible(getSubmitButton());
         getSubmitButton().click();
         return this;
@@ -61,6 +75,20 @@ public class PaymentDetailModal extends BaseModal {
     public String getSubmitButtonText() {
         waitUntilElementVisible(getSubmitButton());
         return getSubmitButton().getText();
+    }
+
+    @Step("Close modal window on MenuPage")
+    public MenuPage closeModalWindowOnMenuPage() {
+        waitUntilElementVisible(getCloseModalWindowButton());
+        getCloseModalWindowButton().click();
+        return new MenuPage(driver);
+    }
+
+    @Step("Close modal window on CartPage")
+    public CartPage closeModalWindowOnCartPage() {
+        waitUntilElementVisible(getCloseModalWindowButton());
+        getCloseModalWindowButton().click();
+        return new CartPage(driver);
     }
 
 }

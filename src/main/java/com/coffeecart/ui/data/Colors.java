@@ -4,9 +4,9 @@ public enum Colors {
 
     ESPRESSO_COLOR("rgba(222, 98, 38, 1)"),
     STEAMED_MILK_COLOR("rgba(178, 187, 140, 1)"),
-    MILK_FOAM_COLOR("rgba(198, 218, 181. 1)");
+    MILK_FOAM_COLOR("rgba(198, 218, 181, 1)");
 
-    private String color;
+    private final String color;
 
     Colors(String color) {
         this.color = color;

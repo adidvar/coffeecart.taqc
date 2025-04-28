@@ -36,23 +36,16 @@ public class LuckyDayModal extends BaseModal {
     @Step("Click «Yes, of course!»")
     public MenuPage clickYes() {
         clickDynamicElement(yesBtn);
-        waitUntilClosed();
+        waitUntilElementInvisible(rootElement);
         return new MenuPage(driver);
     }
 
     @Step("Click «Nah, I'll skip.»")
     public MenuPage clickSkip() {
         clickDynamicElement(skipBtn);
-        waitUntilClosed();
+        waitUntilElementInvisible(rootElement);
         return new MenuPage(driver);
     }
 
     public boolean isDisplayed() { return title.isDisplayed(); }
-
-    /** Чекаємо появи модалки */
-    public void waitUntilOpened() { waitUntilElementVisible(title); }
-
-    /** Чекаємо зникнення модалки */
-    public void waitUntilClosed() { waitUntilElementInvisible(rootElement); }
-
 }

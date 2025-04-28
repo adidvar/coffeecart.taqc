@@ -14,6 +14,7 @@ public class CartComponent extends BaseComponent {
     @FindBy(xpath = ".//div[contains(@class, 'short-item')]")
     private List<WebElement> shortItemElements;
 
+    @Getter
     @FindBy(xpath = ".//div[contains(@class, 'total')]")
     private WebElement totalElement;
 
@@ -25,14 +26,5 @@ public class CartComponent extends BaseComponent {
         return shortItemElements.stream()
                 .map(element -> new ShortItemComponent(driver, element))
                 .collect(Collectors.toList());
-    }
-
-    public double getTotalPrice() {
-        String totalText = totalElement.getText().replace("Total: $", "").trim();
-        return Double.parseDouble(totalText);
-    }
-
-    public boolean isVisible() {
-        return rootElement.isDisplayed();
     }
 }

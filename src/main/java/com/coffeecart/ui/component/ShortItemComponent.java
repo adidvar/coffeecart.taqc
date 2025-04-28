@@ -1,18 +1,23 @@
 package com.coffeecart.ui.component;
 
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class ShortItemComponent extends BaseComponent{
 
+    @Getter
     @FindBy(xpath = "./div[1]/span[1]")
     WebElement spanName;
+    @Getter
     @FindBy(xpath = "./div[1]/span[2]")
     WebElement spanCount;
 
+    @Getter
     @FindBy(xpath = "./div[2]/button[1]")
     WebElement buttonMinus;
+    @Getter
     @FindBy(xpath = "./div[2]/button[2]")
     WebElement buttonPlus;
 
@@ -29,14 +34,14 @@ public class ShortItemComponent extends BaseComponent{
     }
 
     public ShortItemComponent clickPlus(){
+        waitUntilElementClickable(buttonPlus);
         buttonPlus.click();
         return this;
     }
 
     public ShortItemComponent clickMinus(){
+        waitUntilElementClickable(buttonMinus);
         buttonMinus.click();
         return this;
     }
-
-
 }
