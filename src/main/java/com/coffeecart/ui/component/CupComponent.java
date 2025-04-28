@@ -1,5 +1,7 @@
 package com.coffeecart.ui.component;
 
+import com.coffeecart.ui.page.MenuPage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import lombok.Getter;
@@ -76,6 +78,13 @@ public class CupComponent extends BaseComponent {
                 .map(element -> element.getCssValue("background-color"))
                 .map(String::trim)
                 .toList();
+    }
+
+    @Step("Click on Cup body")
+    public MenuPage clickOnCupBody() {
+        waitUntilElementClickable(cupBody);
+        cupBody.click();
+        return new MenuPage(driver);
     }
 
 }
