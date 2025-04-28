@@ -11,12 +11,8 @@ import java.util.stream.Collectors;
 public class CartComponent extends BaseComponent {
 
     @Getter
-    @FindBy(xpath = ".//div[contains(@class, 'short-item')]")
+    @FindBy(xpath = "//div[@class='pay-container']")
     private List<WebElement> shortItemElements;
-
-    @Getter
-    @FindBy(xpath = ".//div[contains(@class, 'total')]")
-    private WebElement totalElement;
 
     public CartComponent(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
@@ -27,4 +23,5 @@ public class CartComponent extends BaseComponent {
                 .map(element -> new ShortItemComponent(driver, element))
                 .collect(Collectors.toList());
     }
+
 }

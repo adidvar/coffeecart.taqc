@@ -4,6 +4,7 @@ import com.coffeecart.ui.component.CardComponent;
 import com.coffeecart.ui.modal.LuckyDayModal;
 import com.coffeecart.ui.modal.PaymentDetailModal;
 import io.qameta.allure.Step;
+
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

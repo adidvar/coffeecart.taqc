@@ -51,42 +51,30 @@ public class PaymentDetailModal extends BaseModal {
     }
 
     @Step("Submit button click with valid values on the Menu page")
-    public MenuPage clickSubmitButtonOnMenuPage() {
-        waitUntilElementVisible(getSubmitButton());
+    public MenuPage clickSubmitButtonWithValidInput() {
         getSubmitButton().click();
         return new MenuPage(driver);
     }
 
-    @Step("Submit button click with valid values on the Cart page")
-    public CartPage clickSubmitButtonOnCartPage() {
-        waitUntilElementVisible(getSubmitButton());
-        getSubmitButton().click();
-        return new CartPage(driver);
-    }
-
     @Step("Submit button click with invalid values")
     public PaymentDetailModal clickSubmitButtonWithInvalidInput() {
-        waitUntilElementVisible(getSubmitButton());
         getSubmitButton().click();
         return this;
     }
 
     @Step("Submit button get text")
     public String getSubmitButtonText() {
-        waitUntilElementVisible(getSubmitButton());
         return getSubmitButton().getText();
     }
 
-    @Step("Close modal window on MenuPage")
+    @Step("Close modal window")
     public MenuPage closeModalWindowOnMenuPage() {
-        waitUntilElementVisible(getCloseModalWindowButton());
         getCloseModalWindowButton().click();
         return new MenuPage(driver);
     }
 
-    @Step("Close modal window on CartPage")
+    @Step("Close modal window")
     public CartPage closeModalWindowOnCartPage() {
-        waitUntilElementVisible(getCloseModalWindowButton());
         getCloseModalWindowButton().click();
         return new CartPage(driver);
     }
