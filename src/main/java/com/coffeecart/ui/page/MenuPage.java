@@ -3,6 +3,7 @@ package com.coffeecart.ui.page;
 import com.coffeecart.ui.component.CardComponent;
 import com.coffeecart.ui.modal.LuckyDayModal;
 import com.coffeecart.ui.modal.PaymentDetailModal;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,5 +42,42 @@ public class MenuPage extends BasePage {
         for(WebElement card: rootCards) {
             cards.add(new CardComponent(driver, card));
         }
+    }
+    public String getTotalButtonText() {
+        return totalButton.getText();
+    }
+    public boolean isTotalButtonPresent() {
+        return totalButton.isDisplayed();
+    }
+
+    public boolean isTotalButtonEnabled() {
+        return totalButton.isEnabled();
+    }
+    @Step("Click 'Total' button")
+    public PaymentDetailModal clickTotalButton() {
+        totalButton.click();
+        return new PaymentDetailModal(driver, paymentModalRoot);
+    }
+    @Step("Клік по чашці з назвою, що містить: {partialTitle}")
+    public void clickCardByPartialTitle(String partialTitle) {
+        for (CardComponent card : cards) {
+            if (card.getName().contains(partialTitle)) {
+                card.clickCup();
+                break;
+            }
+        }
+
+    }
+    @Step("Клік по чашці  за назвою з очікуванням поп-апу")
+    public LuckyDayModal clickCupWithPopUpByCardName(String partialTitle) {
+        for (CardComponent card : cards) {
+            if (card.getName().contains(partialTitle)) {
+                card.clickCup();
+                card.clickCup();
+                card.clickCup();
+                return new LuckyDayModal(driver, luckyDayModalRoot);
+            }
+        }
+        return null;
     }
 }

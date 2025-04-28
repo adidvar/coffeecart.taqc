@@ -1,5 +1,9 @@
 package com.coffeecart.ui.component;
 
+import com.coffeecart.ui.modal.LuckyDayModal;
+import com.coffeecart.ui.modal.PaymentDetailModal;
+import com.coffeecart.ui.page.MenuPage;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,6 +43,13 @@ public class CardComponent extends BaseComponent {
 
     public CupComponent getCupComponent() {
         return cupComponent;
+    }
+
+
+    @Step("Click on cup")
+    public void clickCup() {
+        cupRootElement.click();
+
     }
 }
 

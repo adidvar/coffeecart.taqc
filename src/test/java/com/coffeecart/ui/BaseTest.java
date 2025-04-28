@@ -1,11 +1,12 @@
 package com.coffeecart.ui;
 
-import com.coffeecart.ui.data.DrinkEnum;
-import com.coffeecart.ui.elements.Drink;
+import com.coffeecart.ui.component.CardComponent;
+import com.coffeecart.ui.modal.LuckyDayModal;
+import com.coffeecart.ui.page.MenuPage;
 import com.coffeecart.ui.testrunners.BaseTestRunner;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
 
 
 public class BaseTest extends BaseTestRunner {
