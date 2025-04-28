@@ -51,13 +51,13 @@ public class HeaderComponent extends BaseComponent {
         return new GitHubPage(driver);
     }
 
-    public int getTotalNumberItemsFromCartLink(){
+    public int getTotalNumberItemsFromCartLink() {
         String linkText = cartLink.getText();
         Matcher match = Pattern.compile("(\\d+)").matcher(linkText);
-        if(match.find()){
+        if (match.find()) {
             return Integer.parseInt(match.group());
-        }else{
-            throw new RuntimeException("Something wrong with link text.");
+        } else {
+            return 0;
         }
     }
 
