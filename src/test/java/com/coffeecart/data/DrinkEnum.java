@@ -1,8 +1,14 @@
-package com.coffeecart.ui.data;
+package com.coffeecart.data;
 
+import com.coffeecart.ui.data.Ingredients;
 import com.coffeecart.ui.elements.Drink;
 import com.coffeecart.ui.elements.DrinkIngredient;
 import lombok.Getter;
+import java.util.TreeMap;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public enum DrinkEnum {
     ESPRESSO(new Drink("Espresso",
@@ -38,7 +44,6 @@ public enum DrinkEnum {
             new DrinkIngredient(Ingredients.STEAMED_CREAM, 1),
             new DrinkIngredient(Ingredients.MILK_FOAM, 1)));
 
-
     @Getter
     private Drink recipe;
 
@@ -50,5 +55,18 @@ public enum DrinkEnum {
         return drink.recipe.getName();
     }
 
+    public static Collection<Drink> asCollection() {
+        return Arrays.stream(values())
+                .map(DrinkEnum::getRecipe)
+                .collect(Collectors.toList());
+    }
+    public static Drink getRecipeByOrdinal(int n) {
+        if (n < 0 || n >= values().length) return null;
+        return values()[n].getRecipe();
+    }
 
+    public static Map<String, Drink> asMap() {
+        return Arrays.stream(values())
+                .collect(Collectors.toMap(e -> e.getRecipe().getName(), DrinkEnum::getRecipe, (a, b) -> a, TreeMap::new));
+    }
 }
