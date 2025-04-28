@@ -14,7 +14,7 @@ import java.util.List;
 public class MenuPage extends BasePage {
     protected  LuckyDayModal luckyDayModal;
     protected PaymentDetailModal paymentDetailModal;
-    
+
     @Getter
     private List<CardComponent> cards = new ArrayList<>();
 
