@@ -27,7 +27,7 @@ public class GitHubPage extends BasePage {
     }
 
     public List<WebElement> getPageLinksElements() {
-        return List.copyOf(pageLinks);
+        return pageLinks;
     }
 
 }
