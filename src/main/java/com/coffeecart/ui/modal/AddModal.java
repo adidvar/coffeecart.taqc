@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 public class AddModal extends BaseModal {
 
     @Getter
-    @FindBy(xpath = ".//h2[contains(text(), 'Add')]")
+    @FindBy(xpath = ".//p[contains(text(), 'Add')]")
     private WebElement modalTitle;
     @Getter
     @FindBy(xpath = ".//button[contains(text(), 'Yes')]")

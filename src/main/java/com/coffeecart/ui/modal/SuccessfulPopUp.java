@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class SuccessfulPopUp extends BaseElement {
     @Getter
-    @FindBy(xpath = ".//h2")
+    @FindBy(xpath = ".//div[contains(@class,'snackbar success')]")
     private WebElement successTitle;
 
     public SuccessfulPopUp(WebDriver driver, WebElement rootElement) {
