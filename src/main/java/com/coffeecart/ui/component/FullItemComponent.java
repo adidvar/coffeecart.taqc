@@ -2,7 +2,7 @@ package com.coffeecart.ui.component;
 
 import com.coffeecart.ui.page.CartPage;
 import io.qameta.allure.Step;
-import lombok.Setter;
+import lombok.Getter;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,27 +11,27 @@ import org.openqa.selenium.support.FindBy;
 import java.util.Arrays;
 
 public class FullItemComponent extends BaseComponent{
-    @Setter
+    @Getter
     @FindBy(xpath = ".//div[position()=1 and not(@class)]")
     private WebElement itemLabel;
 
-    @Setter
+    @Getter
     @FindBy(xpath = ".//span[@class='unit-desc']")
     private WebElement unitDescription;
 
-    @Setter
+    @Getter
     @FindBy(xpath = ".//div[@class='unit-controller']/button[contains(text(), '+')]")
     private WebElement addButton;
 
-    @Setter
+    @Getter
     @FindBy(xpath = ".//div[@class='unit-controller']/button[contains(text(), '-')]")
     private WebElement removeButton;
 
-    @Setter
+    @Getter
     @FindBy(xpath = ".//div/button[@class='delete']")
     private WebElement deleteButton;
 
-    @Setter
+    @Getter
     @FindBy(xpath = ".//div[@class='unit-controller']/../following-sibling::*[1]")
     private WebElement totalPrice;
 
