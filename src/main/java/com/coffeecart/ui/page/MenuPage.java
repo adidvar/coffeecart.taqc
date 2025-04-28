@@ -18,12 +18,13 @@ public class MenuPage extends BasePage {
     private List<WebElement> rootCards ;
 
     @Getter
+    @FindBy(xpath="//div[@class='modal']/div[@class='modal-content size']")
+    private WebElement paymentModalRoot ;
+
+    @Getter
     @FindBy(xpath="//button[@class='pay']")
     private WebElement totalButton;
-    /*
-    @Getter
-    protected CardsContainer CardsContainer;
-     */
+
 
 
     public MenuPage(WebDriver driver) {
