@@ -18,8 +18,8 @@ public class CardComponent extends BaseComponent {
     @FindBy(xpath = ".//div[contains(@class, 'cup')]")
     private WebElement cupRootElement;
     @Getter
-    @FindBy(xpath = ".//p[contains(@class, 'description')]")
-    private WebElement descriptionElement;
+    @FindBy(xpath = ".//div[contains(@class, 'cup-body')]")
+    private WebElement cupBodyElement;
 
     private CupComponent cupComponent;
 
@@ -36,40 +36,37 @@ public class CardComponent extends BaseComponent {
         String priceText = priceElement.getText().replace("$", "").trim();
         return Double.parseDouble(priceText);
     }
-    public String getCupBorderColorOnHover() {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(cupRootElement).perform();
-        return cupRootElement.getCssValue("border-color");
-    }
-
     public String getNameColorOnHover() {
         Actions actions = new Actions(driver);
         actions.moveToElement(nameElement).perform();
         return nameElement.getCssValue("color");
     }
 
-    public String getDescription() {
-        return descriptionElement.getText().trim();
-    }
-
-    public void clickOnCup() {
+    public CardComponent clickOnCup() {
+        waitUntilElementClickable(cupRootElement);
         cupRootElement.click();
+        return this;
     }
 
-    public void clickOnName() {
+    public CardComponent clickOnName() {
+        waitUntilElementClickable(nameElement);
         nameElement.click();
+        return this;
+    }
+    public String getCupAriaLabel() {
+        return cupBodyElement.getAttribute("aria-label");
     }
 
-    public String getNameFontSize() {
-        return nameElement.getCssValue("font-size");
-    }
-
-    public String getCupBackgroundColor() {
-        return cupRootElement.getCssValue("background-color");
+    public String getCupTestAttribute() {
+        return cupBodyElement.getAttribute("data-test");
     }
 
     public boolean isCupDisplayed() {
         return cupRootElement.isDisplayed();
+    }
+
+    public boolean validateCard(String expectedName, double expectedPrice) {
+        return getName().equals(expectedName) && getPrice() == expectedPrice;
     }
 
     public CupComponent getCupComponent() {
