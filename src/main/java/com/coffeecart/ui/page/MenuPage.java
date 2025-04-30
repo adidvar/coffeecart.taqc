@@ -1,7 +1,7 @@
 package com.coffeecart.ui.page;
 
 import com.coffeecart.ui.component.CardComponent;
-import com.coffeecart.ui.modal.LuckyDayModal;
+import com.coffeecart.ui.component.LuckyDayComponent;
 import com.coffeecart.ui.modal.PaymentDetailModal;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuPage extends BasePage {
-    protected  LuckyDayModal luckyDayModal;
+    protected LuckyDayComponent luckyDayComponent;
     protected PaymentDetailModal paymentDetailModal;
     
     @Getter
@@ -36,7 +36,7 @@ public class MenuPage extends BasePage {
 
     public MenuPage(WebDriver driver) {
         super(driver);
-        luckyDayModal = new LuckyDayModal(driver,luckyDayModalRoot);
+        luckyDayComponent = new LuckyDayComponent(driver,luckyDayModalRoot);
         paymentDetailModal = new PaymentDetailModal(driver, paymentModalRoot);
         for(WebElement card: rootCards) {
             cards.add(new CardComponent(driver, card));

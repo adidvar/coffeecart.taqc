@@ -1,6 +1,5 @@
-package com.coffeecart.ui.modal;
+package com.coffeecart.ui.component;
 
-import com.coffeecart.ui.component.CupComponent;
 import com.coffeecart.ui.page.MenuPage;
 import io.qameta.allure.Step;
 import lombok.Getter;
@@ -8,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LuckyDayModal extends BaseModal {
+public class LuckyDayComponent extends BaseComponent {
 
     @Getter
     @FindBy(xpath = ".//span")
@@ -28,7 +27,7 @@ public class LuckyDayModal extends BaseModal {
 
     private final CupComponent cupComponent;
 
-    public LuckyDayModal(WebDriver driver, WebElement rootElement) {
+    public LuckyDayComponent(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
         this.cupComponent = new CupComponent(driver, cupRoot);
     }
