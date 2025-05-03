@@ -14,7 +14,7 @@ public class TotalButtonElement extends BaseElement {
     WebElement totalButton;
 
     @Getter
-    @FindBy(xpath = ".//ul[@class='cart-preview']")
+    @FindBy(xpath = "//ul[@class='cart-preview show']")
     WebElement cardComponentElement;
 
     @Getter
@@ -28,7 +28,6 @@ public class TotalButtonElement extends BaseElement {
     public TotalButtonElement(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
         totalButton = rootElement;
-        cartComponent = new CartComponent(driver, cardComponentElement);
         actions = new Actions(driver);
     }
 
@@ -39,12 +38,12 @@ public class TotalButtonElement extends BaseElement {
     }
 
     public double getMoneyCounter() {
-        return Double.parseDouble(totalButton.getText().replace("Total: $",""));
+        return Double.parseDouble(totalButton.getText().replaceAll("[^\\d.]",""));
     }
 
     public CartComponent hoverTotalButton(){
         actions.moveToElement(totalButton).perform();
         waitUntilElementVisible(cardComponentElement);
-        return cartComponent;
+        return new CartComponent(driver, cardComponentElement);
     }
 }
