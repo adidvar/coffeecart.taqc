@@ -4,35 +4,56 @@ import com.coffeecart.ui.component.ShortItemComponent;
 import com.coffeecart.ui.page.MenuPage;
 import com.coffeecart.ui.testrunners.BaseTestRunner;
 import lombok.extern.slf4j.Slf4j;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class DiscardLuckyPropositionTest extends BaseTestRunner {
 
     @Test
     public void testLuckyPropositionDiscard() {
+        String flatWhite = "Flat White";
+        String americano = "Americano";
+        String espressoMacchiato = "Espresso Macchiato";
+        String espresso = "Espresso";
+        String discountedDrink = "Mocha";
+
         MenuPage menuPage = new MenuPage(driver);
-        List<ShortItemComponent> items = menuPage
-                .clickDrink("Flat White")
+
+        menuPage.clickDrink(flatWhite)
+                .clickDrink(flatWhite)
+                .clickDrink(flatWhite)
+                .getGetLackyDayComponent().clickSkip()
                 .getButtonElement()
                 .hoverTotalButton()
-                .getShortItems();
-        Optional<ShortItemComponent> latteItem = items.stream()
-                .filter(item -> item.getName().equalsIgnoreCase("Flat White"))
-                .findFirst();
+                .getShortItems().stream()
+                .filter(item -> item.getName().equals(flatWhite))
+                .findFirst()
+                .ifPresent(item -> item.clickMinus().clickMinus().clickMinus());
 
-        int amount = 0;
-        if (latteItem.isPresent()) {
-            amount = latteItem.get().getCount();
-        }
+        menuPage.clickDrink(americano)
+                .clickDrink(espressoMacchiato)
+                .clickDrink(espresso)
+                .getGetLackyDayComponent().clickSkip();
 
-        double total = menuPage.getButtonElement().getMoneyCounter();
+        List<String> expected = new ArrayList<>(List.of(americano, espressoMacchiato, espresso));
+        List<String> actual = menuPage.getButtonElement()
+                .hoverTotalButton()
+                .getShortItems().stream()
+                .map(ShortItemComponent::getName)
+                .collect(Collectors.toList());
 
-        Assert.assertEquals(total, 18.0, "Total price for Flat White is incorrect");
-        Assert.assertEquals(amount, 1, "Amount of Flat White drink is incorrect");
+        Collections.sort(expected);
+        Collections.sort(actual);
+
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertEquals(actual, expected, "Cart contains unexpected drinks");
+        softAssert.assertFalse(actual.contains(discountedDrink), "Mocha should NOT be in the cart");
+
+        softAssert.assertAll();
     }
 }
