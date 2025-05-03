@@ -27,14 +27,27 @@ public class TestSuccessfulPaymentClearCart extends BaseTest{
 
     @Test(dataProvider = "drinkNames")
     public void testSuccessfulPaymentClearPrice(String drinkName) {
-        double counter = (new MenuPage(driver)).clickDrink(drinkName).clickTotalButton().enterName(testValueProvider.getUserName()).enterEmail(testValueProvider.getUserEmail()).clickSubmitButtonWithValidInput().getButtonElement().getMoneyCounter();
+        double counter = new MenuPage(driver)
+                .clickDrink(drinkName)
+                .clickTotalButton()
+                .enterName(testValueProvider.getUserName())
+                .enterEmail(testValueProvider.getUserEmail())
+                .clickSubmitButtonWithValidInput()
+                .getButtonElement()
+                .getMoneyCounter();
         Assert.assertEquals(counter,0.0,delta);
     }
 
     @Test(dataProvider = "drinkNames")
     public void testSuccessfulPaymentClearCart(String drinkName) {
-        int counter = (new MenuPage(driver)).clickDrink(drinkName).clickTotalButton().enterName(testValueProvider.getUserName()).enterEmail(testValueProvider.getUserEmail()).clickSubmitButtonWithValidInput().goToCartPage().getTotalNumberOfItemsFromCart();
-
+        int counter = new MenuPage(driver)
+                .clickDrink(drinkName)
+                .clickTotalButton()
+                .enterName(testValueProvider.getUserName())
+                .enterEmail(testValueProvider.getUserEmail())
+                .clickSubmitButtonWithValidInput()
+                .goToCartPage()
+                .getTotalNumberOfItemsFromCart();
         Assert.assertEquals(counter,0);
     }
 }
