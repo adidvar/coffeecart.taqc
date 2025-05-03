@@ -11,7 +11,6 @@ import org.openqa.selenium.support.FindBy;
 public class TotalButtonElement extends BaseElement {
 
     @Getter
-    @FindBy(xpath = ".//button[@class='pay']")
     WebElement totalButton;
 
     @Getter
@@ -28,6 +27,7 @@ public class TotalButtonElement extends BaseElement {
 
     public TotalButtonElement(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
+        totalButton = rootElement;
         cartComponent = new CartComponent(driver, cardComponentElement);
         actions = new Actions(driver);
     }
