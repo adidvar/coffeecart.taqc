@@ -1,8 +1,5 @@
 package com.coffeecart.ui.component;
 
-import com.coffeecart.ui.modal.LuckyDayModal;
-import com.coffeecart.ui.modal.PaymentDetailModal;
-import com.coffeecart.ui.page.MenuPage;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;

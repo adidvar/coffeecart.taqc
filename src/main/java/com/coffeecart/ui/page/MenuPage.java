@@ -1,7 +1,9 @@
 package com.coffeecart.ui.page;
 
 import com.coffeecart.ui.component.CardComponent;
-import com.coffeecart.ui.modal.LuckyDayModal;
+import com.coffeecart.ui.component.CupComponent;
+import com.coffeecart.ui.component.LuckyDayComponent;
+import com.coffeecart.ui.elements.TotalButtonElement;
 import com.coffeecart.ui.modal.PaymentDetailModal;
 import io.qameta.allure.Step;
 
@@ -14,9 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuPage extends BasePage {
-    protected  LuckyDayModal luckyDayModal;
-    protected PaymentDetailModal paymentDetailModal;
-
+    TotalButtonElement totalButton;
     @Getter
     private List<CardComponent> cards = new ArrayList<>();
 
@@ -34,51 +34,49 @@ public class MenuPage extends BasePage {
 
     @Getter
     @FindBy(xpath="//button[@class='pay']")
-    private WebElement totalButton;
+    private WebElement totalButtonRoot;
+
+    @Getter
+    @FindBy(xpath="//*[@class=\"pay-container\"]")
+    private WebElement payContainer ;
 
     public MenuPage(WebDriver driver) {
         super(driver);
-        luckyDayModal = new LuckyDayModal(driver,luckyDayModalRoot);
-        paymentDetailModal = new PaymentDetailModal(driver, paymentModalRoot);
+        totalButton = new TotalButtonElement(driver,totalButtonRoot);
         for(WebElement card: rootCards) {
             cards.add(new CardComponent(driver, card));
         }
     }
     public String getTotalButtonText() {
-        return totalButton.getText();
+        return totalButton.getTotalButton().getText();
     }
     public boolean isTotalButtonPresent() {
-        return totalButton.isDisplayed();
+        return totalButton.getTotalButton().isDisplayed();
     }
 
     public boolean isTotalButtonEnabled() {
-        return totalButton.isEnabled();
+        return totalButton.getTotalButton().isEnabled();
     }
+
     @Step("Click 'Total' button")
     public PaymentDetailModal clickTotalButton() {
-        totalButton.click();
-        return new PaymentDetailModal(driver, paymentModalRoot);
+        return totalButton.clickTotalButton();
     }
-    @Step("Клік по чашці з назвою, що містить: {partialTitle}")
-    public void clickCardByPartialTitle(String partialTitle) {
-        for (CardComponent card : cards) {
-            if (card.getName().contains(partialTitle)) {
-                card.clickCup();
-                break;
-            }
-        }
 
+    public TotalButtonElement getButtonElement(){
+        return totalButton;
     }
-    @Step("Клік по чашці  за назвою з очікуванням поп-апу")
-    public LuckyDayModal clickCupWithPopUpByCardName(String partialTitle) {
-        for (CardComponent card : cards) {
-            if (card.getName().contains(partialTitle)) {
-                card.clickCup();
-                card.clickCup();
-                card.clickCup();
-                return new LuckyDayModal(driver, luckyDayModalRoot);
-            }
-        }
-        return null;
+
+    public LuckyDayComponent getGetLackyDayComponent(){
+        return new LuckyDayComponent(driver,getLuckyDayModalRoot());
+    }
+
+    @Step("Click on cup with title: {drinkName}")
+    public MenuPage clickDrink(String drinkName) {
+        getCards().stream()
+                .filter(card -> card.getName().equals(drinkName))
+                .findFirst()
+                .ifPresent(component -> component.getCupComponent().clickOnCupBody());
+        return this;
     }
 }
