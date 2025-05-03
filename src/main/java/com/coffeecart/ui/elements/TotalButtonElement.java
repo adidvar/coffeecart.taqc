@@ -28,7 +28,7 @@ public class TotalButtonElement extends BaseElement {
     public TotalButtonElement(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
         totalButton = rootElement;
-        cartComponent = new CartComponent(driver, cardComponentElement);
+        cartComponent = new CartComponent(driver, cartComponentRoot);
         actions = new Actions(driver);
     }
 
