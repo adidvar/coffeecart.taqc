@@ -14,42 +14,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuPage extends BasePage {
-    protected  LuckyDayModal luckyDayModal;
+    protected LuckyDayModal luckyDayModal;
     protected PaymentDetailModal paymentDetailModal;
-    
+
     @Getter
     private List<CardComponent> cards = new ArrayList<>();
 
     @Getter
-    @FindBy(xpath="//*[@id='app']/div[2]/ul/li")
-    private List<WebElement> rootCards ;
+    @FindBy(xpath = "//*[@id='app']/div[2]/ul/li")
+    private List<WebElement> rootCards;
 
     @Getter
-    @FindBy(xpath="//div[@class='modal']/div[@class='modal-content size']")
-    private WebElement paymentModalRoot ;
+    @FindBy(xpath = "//div[@class='modal']/div[@class='modal-content size']")
+    private WebElement paymentModalRoot;
 
     @Getter
-    @FindBy(xpath="//div[@class='promo']")
-    private WebElement luckyDayModalRoot ;
+    @FindBy(xpath = "//div[@class='promo']")
+    private WebElement luckyDayModalRoot;
 
     @Getter
-    @FindBy(xpath="//*[@class=\"pay-container\"]")
+    @FindBy(xpath = "//*[@class=\"pay-container\"]")
     private WebElement payContainer;
 
     @Getter
-    @FindBy(xpath="//button[@class='pay']")
+    @FindBy(xpath = "//button[@class='pay']")
     private WebElement totalButton;
 
     public MenuPage(WebDriver driver) {
         super(driver);
-        luckyDayModal = new LuckyDayModal(driver,luckyDayModalRoot);
+        luckyDayModal = new LuckyDayModal(driver, luckyDayModalRoot);
         paymentDetailModal = new PaymentDetailModal(driver, paymentModalRoot);
-        for(WebElement card: rootCards) {
+        for (WebElement card : rootCards) {
             cards.add(new CardComponent(driver, card));
         }
     }
 
-    public TotalButtonElement getButtonElement(){
-        return new TotalButtonElement(driver,getPayContainer());
+    public TotalButtonElement getButtonElement() {
+        return new TotalButtonElement(driver, getPayContainer());
+    }
+
+    public MenuPage clickDrink(String drinkName) {
+        getCards().stream()
+                .filter(card -> card.getName().equals(drinkName))
+                .findFirst()
+                .ifPresent(component -> component.getCupComponent().getCupBody().click());
+        return this;
     }
 }
+

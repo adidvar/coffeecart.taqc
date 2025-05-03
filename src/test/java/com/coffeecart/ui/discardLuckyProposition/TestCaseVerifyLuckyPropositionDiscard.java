@@ -28,6 +28,7 @@ public class TestCaseVerifyLuckyPropositionDiscard extends BaseTestRunner {
                 .findFirst();
 
         cardComponent.ifPresent(component -> component.getCupComponent().getCupBody().click());
+        //return this
     }
 
     public void testLuckyPropositionDiscard() {
