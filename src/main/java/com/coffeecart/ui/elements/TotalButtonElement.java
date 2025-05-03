@@ -10,12 +10,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class TotalButtonElement extends BaseElement {
 
-    @Getter
-    @FindBy(xpath = ".//button[@class='pay']")
     WebElement totalButton;
 
     @Getter
-    @FindBy(xpath = ".//ul[@class='cart-preview']")
+    @FindBy(xpath = "//ul[@class='cart-preview show']")
     WebElement cartComponentRoot;
 
     @Getter
@@ -28,7 +26,7 @@ public class TotalButtonElement extends BaseElement {
 
     public TotalButtonElement(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
-        cartComponent = new CartComponent(driver, cartComponentRoot);
+        totalButton = rootElement;
         actions = new Actions(driver);
     }
 
@@ -39,12 +37,12 @@ public class TotalButtonElement extends BaseElement {
     }
 
     public double getMoneyCounter() {
-        return Double.parseDouble(totalButton.getText().replace("Total: $",""));
+        return Double.parseDouble(totalButton.getText().replaceAll("[^\\d.]",""));
     }
 
     public CartComponent hoverTotalButton(){
         actions.moveToElement(totalButton).perform();
         waitUntilElementVisible(cartComponentRoot);
-        return cartComponent;
+        return new CartComponent(driver, cartComponentRoot);
     }
 }
