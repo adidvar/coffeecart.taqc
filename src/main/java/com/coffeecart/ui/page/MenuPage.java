@@ -42,4 +42,12 @@ public class MenuPage extends BasePage {
             cards.add(new CardComponent(driver, card));
         }
     }
+
+    public MenuPage clickDrink(String drinkName) {
+        getCards().stream()
+                .filter(card -> card.getName().equals(drinkName))
+                .findFirst()
+                .ifPresent(component -> component.getCupComponent().getCupBody().click());
+        return this;
+    }
 }
