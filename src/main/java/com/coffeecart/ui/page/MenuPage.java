@@ -1,7 +1,6 @@
 package com.coffeecart.ui.page;
 
 import com.coffeecart.ui.component.CardComponent;
-import com.coffeecart.ui.component.CupComponent;
 import com.coffeecart.ui.component.LuckyDayComponent;
 import com.coffeecart.ui.elements.TotalButtonElement;
 import com.coffeecart.ui.modal.PaymentDetailModal;
@@ -46,16 +45,6 @@ public class MenuPage extends BasePage {
         for(WebElement card: rootCards) {
             cards.add(new CardComponent(driver, card));
         }
-    }
-    public String getTotalButtonText() {
-        return totalButton.getTotalButton().getText();
-    }
-    public boolean isTotalButtonPresent() {
-        return totalButton.getTotalButton().isDisplayed();
-    }
-
-    public boolean isTotalButtonEnabled() {
-        return totalButton.getTotalButton().isEnabled();
     }
 
     @Step("Click 'Total' button")
