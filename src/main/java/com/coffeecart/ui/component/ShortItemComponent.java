@@ -16,10 +16,10 @@ public class ShortItemComponent extends BaseComponent{
     WebElement spanCount;
 
     @Getter
-    @FindBy(xpath = "./div[2]/button[1]")
+    @FindBy(xpath = "./div[2]/button[2]")
     WebElement buttonMinus;
     @Getter
-    @FindBy(xpath = "./div[2]/button[2]")
+    @FindBy(xpath = "./div[2]/button[1]")
     WebElement buttonPlus;
 
     public ShortItemComponent(WebDriver driver, WebElement rootElement) {

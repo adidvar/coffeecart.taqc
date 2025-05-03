@@ -42,11 +42,9 @@ public class CardComponent extends BaseComponent {
         return cupComponent;
     }
 
-
     @Step("Click on cup")
     public void clickCup() {
         cupRootElement.click();
-
     }
 }
 
