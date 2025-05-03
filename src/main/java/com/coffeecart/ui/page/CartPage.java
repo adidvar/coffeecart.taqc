@@ -25,7 +25,7 @@ public class CartPage extends BasePage {
     private List<WebElement> rootFullItems;
 
     @Getter
-    @FindBy(xpath = "//div[@class='pay-container']")
+    @FindBy(xpath = "//div[@class='pay-container']/button[@class='pay']")
     private WebElement rootTotalButton;
 
     @Getter
