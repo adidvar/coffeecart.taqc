@@ -41,7 +41,6 @@ public class MenuPage extends BasePage {
 
     public MenuPage(WebDriver driver) {
         super(driver);
-        totalButton = new TotalButtonElement(driver,totalButtonRoot);
         for(WebElement card: rootCards) {
             cards.add(new CardComponent(driver, card));
         }
@@ -53,7 +52,7 @@ public class MenuPage extends BasePage {
     }
 
     public TotalButtonElement getButtonElement(){
-        return totalButton;
+        return new TotalButtonElement(driver,totalButtonRoot);
     }
 
     public LuckyDayComponent getGetLackyDayComponent(){
