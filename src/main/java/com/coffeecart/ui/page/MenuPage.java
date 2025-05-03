@@ -48,7 +48,7 @@ public class MenuPage extends BasePage {
 
     @Step("Click 'Total' button")
     public PaymentDetailModal clickTotalButton() {
-        return totalButton.clickTotalButton();
+        return getButtonElement().clickTotalButton();
     }
 
     public TotalButtonElement getButtonElement(){
