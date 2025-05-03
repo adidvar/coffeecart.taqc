@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class TotalButtonElement extends BaseElement {
 
+    @Getter
     WebElement totalButton;
 
     @Getter
@@ -27,6 +28,7 @@ public class TotalButtonElement extends BaseElement {
     public TotalButtonElement(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
         totalButton = rootElement;
+        cartComponent = new CartComponent(driver, cardComponentElement);
         actions = new Actions(driver);
     }
 
@@ -37,7 +39,7 @@ public class TotalButtonElement extends BaseElement {
     }
 
     public double getMoneyCounter() {
-        return Double.parseDouble(totalButton.getText().replaceAll("[^\\d.]",""));
+        return Double.parseDouble(totalButton.getText().replace("Total: $",""));
     }
 
     public CartComponent hoverTotalButton(){
