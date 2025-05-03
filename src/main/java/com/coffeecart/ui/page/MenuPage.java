@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuPage extends BasePage {
-    TotalButtonElement totalButton;
     @Getter
     private List<CardComponent> cards = new ArrayList<>();
 
