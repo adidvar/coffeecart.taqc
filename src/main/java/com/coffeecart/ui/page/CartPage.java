@@ -99,13 +99,11 @@ public class CartPage extends BasePage {
 
     @Step("Navigate to the Menu Page")
     public MenuPage goToMenuPage() {
-        header.navigateToMenu();
-        return new MenuPage(driver);
+        return  header.navigateToMenu();
     }
 
     @Step("Navigate to the GitHub Page")
     public GitHubPage goToGitHubPage() {
-        header.navigateToGitHub();
-        return new GitHubPage(driver);
+        return  header.navigateToGitHub();
     }
 }

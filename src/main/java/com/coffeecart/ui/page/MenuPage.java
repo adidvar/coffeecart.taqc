@@ -79,4 +79,14 @@ public class MenuPage extends BasePage {
                 .ifPresent(component -> component.getCupComponent().clickOnCupBody());
         return this;
     }
+
+    @Step("Navigate to the Cart Page")
+    public CartPage goToCartPage() {
+        return header.navigateToCart();
+    }
+
+    @Step("Navigate to the GitHub Page")
+    public GitHubPage goToGitHubPage() {
+        return header.navigateToGitHub();
+    }
 }
