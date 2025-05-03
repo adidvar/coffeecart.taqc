@@ -1,11 +1,13 @@
 package com.coffeecart.ui.page;
 
 import com.coffeecart.ui.component.CardComponent;
+import com.coffeecart.ui.elements.TotalButtonElement;
 import com.coffeecart.ui.modal.LuckyDayModal;
 import com.coffeecart.ui.modal.PaymentDetailModal;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
@@ -31,6 +33,10 @@ public class MenuPage extends BasePage {
     private WebElement luckyDayModalRoot ;
 
     @Getter
+    @FindBy(xpath="//*[@class=\"pay-container\"]")
+    private WebElement payContainer;
+
+    @Getter
     @FindBy(xpath="//button[@class='pay']")
     private WebElement totalButton;
 
@@ -41,5 +47,9 @@ public class MenuPage extends BasePage {
         for(WebElement card: rootCards) {
             cards.add(new CardComponent(driver, card));
         }
+    }
+
+    public TotalButtonElement getButtonElement(){
+        return new TotalButtonElement(driver,getPayContainer());
     }
 }
