@@ -1,9 +1,16 @@
 package com.coffeecart.ui;
 
+
+import com.coffeecart.ui.component.CardComponent;
+import com.coffeecart.ui.modal.LuckyDayModal;
+import com.coffeecart.ui.page.MenuPage;
+
 import com.coffeecart.data.DrinkEnum;
 import com.coffeecart.ui.data.Ingredients;
 import com.coffeecart.ui.elements.Drink;
+
 import com.coffeecart.ui.testrunners.BaseTestRunner;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -11,7 +18,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.testng.Assert.*;
 
 
 public class BaseTest extends BaseTestRunner {
