@@ -3,6 +3,7 @@ package com.coffeecart.ui.elements;
 import com.coffeecart.ui.component.CartComponent;
 import com.coffeecart.ui.modal.PaymentDetailModal;
 import lombok.Getter;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -28,7 +29,6 @@ public class TotalButtonElement extends BaseElement {
     public TotalButtonElement(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
         totalButton = rootElement;
-        cartComponent = new CartComponent(driver, cartComponentRoot);
         actions = new Actions(driver);
     }
 
@@ -39,7 +39,7 @@ public class TotalButtonElement extends BaseElement {
     }
 
     public double getMoneyCounter() {
-        return Double.parseDouble(totalButton.getText().replace("Total: $",""));
+        return Double.parseDouble(totalButton.getText().replaceAll("[^\\d.]",""));
     }
 
     public CartComponent hoverTotalButton(){

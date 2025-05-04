@@ -1,5 +1,7 @@
 package com.coffeecart.ui;
 
+import com.coffeecart.ui.component.CardComponent;
+import com.coffeecart.ui.page.MenuPage;
 
 import com.coffeecart.data.DrinkEnum;
 import com.coffeecart.ui.data.Ingredients;
