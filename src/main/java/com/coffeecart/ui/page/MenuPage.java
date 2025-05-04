@@ -7,6 +7,7 @@ import com.coffeecart.ui.modal.PaymentDetailModal;
 import io.qameta.allure.Step;
 
 import lombok.Getter;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -77,5 +78,13 @@ public class MenuPage extends BasePage {
     @Step("Navigate to the GitHub Page")
     public GitHubPage goToGitHubPage() {
         return header.navigateToGitHub();
+    }
+
+    public boolean isLuckyModalNotDisplayed(){
+        try{
+            return !getLuckyDayModalRoot().isDisplayed();
+        }catch(NoSuchElementException e){
+            return true;
+        }
     }
 }
