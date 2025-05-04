@@ -13,9 +13,7 @@ public class TestAddCupsToCart extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
 
         MenuPage menuPage = new MenuPage(driver);
-        WebElement headerRoot = driver.findElement(By.xpath("//a[@aria-label='Cart page']"));
-        HeaderComponent header = new HeaderComponent(driver, headerRoot);
-
+        HeaderComponent header = menuPage.getHeader();
 
         int initialCount = header.getTotalNumberItemsFromCartLink();
         softAssert.assertEquals(initialCount, 0, "Initial counter should be 0");
@@ -23,8 +21,7 @@ public class TestAddCupsToCart extends BaseTest {
         for (int i = 0; i < 5; i++) {
             menuPage.getCards()
                     .get(i)
-                    .getCupComponent()
-                    .clickOnCupBody();
+                    .clickCup();
             int expected = initialCount + i + 1;
             int actual = header.getTotalNumberItemsFromCartLink();
             softAssert.assertEquals(actual, expected,
