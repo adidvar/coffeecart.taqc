@@ -1,5 +1,7 @@
 package com.coffeecart.ui;
 
+import com.coffeecart.data.DrinkEnum;
+import com.coffeecart.ui.data.PaymentFormTexts;
 import com.coffeecart.ui.modal.PaymentDetailModal;
 import com.coffeecart.ui.modal.SuccessfulPopUp;
 import com.coffeecart.ui.page.MenuPage;
@@ -15,7 +17,7 @@ import org.testng.asserts.SoftAssert;
 public class PaymentSubmissionWithValidDataTest extends BaseTestRunner {
 
     private static final String SUCCESS_MESSAGE = "Thanks for your purchase. Please check your email for payment.";
-    private static final String DRINK = "Espresso";
+    private static final String DRINK = DrinkEnum.ESPRESSO.name();
 
     @Test
     @Description("Verify valid name/email submission shows confirmation message.")
@@ -25,25 +27,16 @@ public class PaymentSubmissionWithValidDataTest extends BaseTestRunner {
     public void verifyPaymentSubmissionWithValidData() {
         SoftAssert softAssert = new SoftAssert();
 
-        final String[] expectedTexts = {
-                "Payment details",
-                "We will send you a payment link via email.",
-                "Name",
-                "Email",
-                "I would like to receive order updates and promotional messages.",
-                "Submit"
-        };
-
         PaymentDetailModal paymentModal = new MenuPage(driver)
                 .clickDrink(DRINK)
                 .clickTotalButton();
 
-        softAssert.assertEquals(paymentModal.getHeaderText(), expectedTexts[0], "Header text mismatch");
-        softAssert.assertEquals(paymentModal.getParagraphText(), expectedTexts[1], "Paragraph text mismatch");
-        softAssert.assertEquals(paymentModal.getLabelNameText(), expectedTexts[2], "Name label text mismatch");
-        softAssert.assertEquals(paymentModal.getLabelEmailText(), expectedTexts[3], "Email label text mismatch");
-        softAssert.assertEquals(paymentModal.getLabelCheckboxText(), expectedTexts[4], "Checkbox label text mismatch");
-        softAssert.assertEquals(paymentModal.getSubmitButtonText(), expectedTexts[5], "Submit button text mismatch");
+        softAssert.assertEquals(paymentModal.getHeaderText(), PaymentFormTexts.HEADER.getText(), "Header text mismatch");
+        softAssert.assertEquals(paymentModal.getParagraphText(), PaymentFormTexts.PARAGRAPH.getText(), "Paragraph text mismatch");
+        softAssert.assertEquals(paymentModal.getLabelNameText(), PaymentFormTexts.NAME_LABEL.getText(), "Name label text mismatch");
+        softAssert.assertEquals(paymentModal.getLabelEmailText(), PaymentFormTexts.EMAIL_LABEL.getText(), "Email label text mismatch");
+        softAssert.assertEquals(paymentModal.getLabelCheckboxText(),PaymentFormTexts.CHECKBOX_LABEL.getText(), "Checkbox label text mismatch");
+        softAssert.assertEquals(paymentModal.getSubmitButtonText(), PaymentFormTexts.SUBMIT_BUTTON.getText(), "Submit button text mismatch");
         softAssert.assertFalse(paymentModal.isCheckboxMarked(), "Checkbox should be unchecked by default");
 
 //        softAssert.assertTrue(
