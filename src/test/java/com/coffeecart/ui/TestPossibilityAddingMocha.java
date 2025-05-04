@@ -34,7 +34,7 @@ public class TestPossibilityAddingMocha extends BaseTest {
 
         int numberItemsInCart = menuPage.getHeader().getTotalNumberItemsFromCartLink();
 
-        LuckyDayComponent luckyDayComponent = menuPage.getGetLackyDayComponent();
+        LuckyDayComponent luckyDayComponent = menuPage.getLuckyDayComponent();
         softAssert.assertTrue(menuPage.getLuckyDayModalRoot().isDisplayed(),
                 "The LuckyDayModal should be displayed.");
 
