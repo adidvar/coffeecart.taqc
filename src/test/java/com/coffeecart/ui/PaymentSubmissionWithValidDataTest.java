@@ -45,6 +45,11 @@ public class PaymentSubmissionWithValidDataTest extends BaseTestRunner {
                 "Payment modal should have correct background color"
         );
 
+        softAssert.assertTrue(
+                paymentModal.isBackgroundColorOfPaymentDetailModalMatch(),
+                "Payment modal should have correct background color"
+        );
+        
         SuccessfulPopUp successPopup = paymentModal
                 .enterName(testValueProvider.getUserName())
                 .enterEmail(testValueProvider.getUserEmail())

@@ -6,8 +6,8 @@ public enum Colors {
     STEAMED_MILK_COLOR("rgba(178, 187, 140, 1)"),
     MILK_FOAM_COLOR("rgba(198, 218, 181, 1)"),
 
-    TURQUOISE("rgb(127, 195, 179)"),
-    TERRACOTTA("rgb(222, 98, 38)");
+    TURQUOISE("rgba(127, 195, 179)"),
+    TERRACOTTA("rgba(222, 98, 38)");
 
 
     private final String color;
