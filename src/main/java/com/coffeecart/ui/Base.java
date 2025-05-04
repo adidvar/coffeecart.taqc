@@ -3,6 +3,7 @@ package com.coffeecart.ui;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
+import org.openqa.selenium.devtools.v132.page.Page;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -87,6 +88,10 @@ public abstract class Base {
 
             throw e;
         }
+    }
+
+    public void updateElements(){
+        PageFactory.initElements(this.driver, this);
     }
 
     public void sleep(long millisSeconds) {
