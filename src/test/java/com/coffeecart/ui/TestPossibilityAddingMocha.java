@@ -1,27 +1,22 @@
 package com.coffeecart.ui;
 
 import com.coffeecart.data.DrinkEnum;
+import com.coffeecart.data.MenuPageDataProviders;
 import com.coffeecart.ui.component.LuckyDayComponent;
 import com.coffeecart.ui.page.MenuPage;
-import com.coffeecart.ui.testrunners.BaseTestRunner;
+import io.qameta.allure.*;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.util.Arrays;
 
-public class TestPossibilityAddingMocca extends BaseTestRunner {
+public class TestPossibilityAddingMocha extends BaseTest {
 
-    @DataProvider(name = "drinkNames")
-    public Object[][] provideDrinkNames() {
-        return Arrays.stream(DrinkEnum.values())
-                .map(drinkEnum -> new Object[]{DrinkEnum.getName(drinkEnum)})
-                .toArray(Object[][]::new);
-    }
-
-    @Test(dataProvider = "drinkNames")
-    public void possibilityAddingMocca(String drinkName){
+    @Test(dataProvider = "drinkNames", dataProviderClass = MenuPageDataProviders.class)
+    @Description("Verification of the possibility of adding Mocha to the cart in the pop-up 'Lucky Day'")
+    @Feature("Pop-up 'Lucky Day'")
+    @Owner("Mariia Mykhailenko")
+    public void possibilityAddingMocha(String drinkName){
         SoftAssert softAssert = new SoftAssert();
 
         MenuPage menuPage = new MenuPage(driver);
@@ -36,6 +31,8 @@ public class TestPossibilityAddingMocca extends BaseTestRunner {
             menuPage = menuPage.clickDrink(drinkName).clickDrink(drinkName);
         }
 
+        int numberItemsInCart = menuPage.getHeader().getTotalNumberItemsFromCartLink();
+
         LuckyDayComponent luckyDayComponent = menuPage.getGetLackyDayComponent();
         softAssert.assertTrue(menuPage.getLuckyDayModalRoot().isDisplayed(),
                 "The LuckyDayModal should be displayed.");
@@ -46,7 +43,7 @@ public class TestPossibilityAddingMocca extends BaseTestRunner {
                         expectedTitleLuckyDayComponent,
                         luckyDayComponent.getTitle()));
 
-        int numberItemsInCart = menuPage.getHeader().getTotalNumberItemsFromCartLink();
+
         menuPage = luckyDayComponent.clickYes();
         softAssert.assertTrue(menuPage.isLuckyModalNotDisplayed(), "The LuckyDayModal shouldn't be displayed.");
 
