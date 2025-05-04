@@ -1,5 +1,6 @@
 package com.coffeecart.ui.modal;
 
+import com.coffeecart.ui.data.Colors;
 import com.coffeecart.ui.page.CartPage;
 import com.coffeecart.ui.page.MenuPage;
 import io.qameta.allure.Step;
@@ -100,7 +101,7 @@ public class PaymentDetailModal extends BaseModal {
     @Step("Submit button click with valid values on the Menu page")
     public SuccessfulPopUp clickSubmitButtonWithValidInput() {
         getSubmitButton().click();
-        return new SuccessfulPopUp(driver,rootElement);
+        return new SuccessfulPopUp(driver);
     }
 
     @Step("Submit button click with invalid values")
@@ -120,6 +121,11 @@ public class PaymentDetailModal extends BaseModal {
     public CartPage closeModalWindowOnCartPage() {
         getCloseModalWindowButton().click();
         return new CartPage(driver);
+    }
+
+    public boolean isBackgroundColorOfPaymentDetailModalMatch() {
+        String color = getRootElement().getCssValue("background-color");
+        return color.equals(Colors.TERRACOTTA.getColor()) || color.equals(Colors.TURQUOISE.getColor());
     }
 
 }

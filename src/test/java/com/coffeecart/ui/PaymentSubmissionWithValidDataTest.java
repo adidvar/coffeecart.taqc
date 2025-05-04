@@ -1,6 +1,5 @@
 package com.coffeecart.ui;
 
-
 import com.coffeecart.ui.modal.PaymentDetailModal;
 import com.coffeecart.ui.modal.SuccessfulPopUp;
 import com.coffeecart.ui.page.MenuPage;
@@ -16,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 public class PaymentSubmissionWithValidDataTest extends BaseTestRunner {
 
     private static final String SUCCESS_MESSAGE = "Thanks for your purchase. Please check your email for payment.";
-    private static final String ESPRESSO_DRINK = "Espresso";
+    private static final String DRINK = "Espresso";
 
     @Test
     @Description("Verify valid name/email submission shows confirmation message.")
@@ -36,7 +35,7 @@ public class PaymentSubmissionWithValidDataTest extends BaseTestRunner {
         };
 
         PaymentDetailModal paymentModal = new MenuPage(driver)
-                .clickDrink(ESPRESSO_DRINK)
+                .clickDrink(DRINK)
                 .clickTotalButton();
 
         softAssert.assertEquals(paymentModal.getHeaderText(), expectedTexts[0], "Header text mismatch");
@@ -46,6 +45,11 @@ public class PaymentSubmissionWithValidDataTest extends BaseTestRunner {
         softAssert.assertEquals(paymentModal.getLabelCheckboxText(), expectedTexts[4], "Checkbox label text mismatch");
         softAssert.assertEquals(paymentModal.getSubmitButtonText(), expectedTexts[5], "Submit button text mismatch");
         softAssert.assertFalse(paymentModal.isCheckboxMarked(), "Checkbox should be unchecked by default");
+
+//        softAssert.assertTrue(
+//                paymentModal.isBackgroundColorOfPaymentDetailModalMatch(),
+//                "Payment modal should have correct background color"
+//        );
 
         SuccessfulPopUp successPopup = paymentModal
                 .enterName(testValueProvider.getUserName())

@@ -13,7 +13,7 @@ public class SuccessfulPopUp extends Base {
     @FindBy(xpath = "//div[contains(@class,'snackbar success')]")
     private WebElement successTitle;
 
-    public SuccessfulPopUp(WebDriver driver, WebElement successTitle) {
+    public SuccessfulPopUp(WebDriver driver) {
         super(driver);
     }
 
