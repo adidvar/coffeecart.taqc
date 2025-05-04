@@ -4,13 +4,14 @@ import com.coffeecart.data.DrinkEnum;
 import com.coffeecart.data.MenuPageDataProviders;
 import com.coffeecart.ui.component.LuckyDayComponent;
 import com.coffeecart.ui.page.MenuPage;
+import com.coffeecart.ui.testrunners.BaseTestRunner;
 import io.qameta.allure.*;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 
-public class TestPossibilityAddingMocha extends BaseTest {
+public class TestPossibilityAddingMocha extends BaseTestRunner {
 
     @Test(dataProvider = "drinkNames", dataProviderClass = MenuPageDataProviders.class)
     @Description("Verification of the possibility of adding Mocha to the cart in the pop-up 'Lucky Day'")
