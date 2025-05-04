@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuPage extends BasePage {
-    TotalButtonElement totalButton;
     @Getter
     private List<CardComponent> cards = new ArrayList<>();
 
@@ -42,7 +41,6 @@ public class MenuPage extends BasePage {
 
     public MenuPage(WebDriver driver) {
         super(driver);
-        totalButton = new TotalButtonElement(driver,totalButtonRoot);
         for(WebElement card: rootCards) {
             cards.add(new CardComponent(driver, card));
         }
@@ -50,11 +48,11 @@ public class MenuPage extends BasePage {
 
     @Step("Click 'Total' button")
     public PaymentDetailModal clickTotalButton() {
-        return totalButton.clickTotalButton();
+        return getButtonElement().clickTotalButton();
     }
 
     public TotalButtonElement getButtonElement(){
-        return totalButton;
+        return new TotalButtonElement(driver,totalButtonRoot);
     }
 
     public LuckyDayComponent getGetLackyDayComponent(){
