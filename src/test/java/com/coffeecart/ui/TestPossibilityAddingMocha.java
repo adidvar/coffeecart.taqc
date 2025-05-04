@@ -38,10 +38,10 @@ public class TestPossibilityAddingMocha extends BaseTest {
                 "The LuckyDayModal should be displayed.");
 
         String expectedTitleLuckyDayComponent = "It's your lucky day! Get an extra cup of Mocha for $4.";
-        softAssert.assertEquals(luckyDayComponent.getTitle(), expectedTitleLuckyDayComponent,
+        softAssert.assertEquals(luckyDayComponent.getTitle().getText(), expectedTitleLuckyDayComponent,
                 String.format("The title of LuckyDayComponent should be '%s' but was '%s'",
                         expectedTitleLuckyDayComponent,
-                        luckyDayComponent.getTitle()));
+                        luckyDayComponent.getTitle().getText()));
 
 
         menuPage = luckyDayComponent.clickYes();
@@ -53,5 +53,7 @@ public class TestPossibilityAddingMocha extends BaseTest {
                 String.format("The number of elements in Cart should be '%s' but was '%s'",
                         expectedNumberItemsInCart,
                         actualNumberItemsInCart));
+
+        softAssert.assertAll();
     }
 }
