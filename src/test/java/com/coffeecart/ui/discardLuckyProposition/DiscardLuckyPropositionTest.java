@@ -1,6 +1,7 @@
 package com.coffeecart.ui.discardLuckyProposition;
 
 import com.coffeecart.data.DrinkEnum;
+import com.coffeecart.ui.BaseTest;
 import com.coffeecart.ui.component.ShortItemComponent;
 import com.coffeecart.ui.page.MenuPage;
 import com.coffeecart.ui.testrunners.BaseTestRunner;
@@ -12,7 +13,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class DiscardLuckyPropositionTest extends BaseTestRunner {
+public class DiscardLuckyPropositionTest extends BaseTest {
 
     @Test
     public void testLuckyPropositionDiscard() {
