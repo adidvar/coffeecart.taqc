@@ -40,6 +40,10 @@ public class PaymentDetailModal extends BaseModal {
     @Getter
     @FindBy(xpath = ".//section/button")
     private WebElement closeModalWindowButton;
+    @Getter
+    @FindBy(xpath = "//*[@id=\"app\"]/div[2]/div[2]/div")
+    private WebElement paymentModal;
+
 
     public PaymentDetailModal(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
@@ -123,7 +127,7 @@ public class PaymentDetailModal extends BaseModal {
     }
 
     public boolean isBackgroundColorOfPaymentDetailModalMatch() {
-        String color = getRootElement().getCssValue("background-color");
+        String color = paymentModal.getCssValue("background-color");
         return color.equals(Colors.TERRACOTTA.getColor()) || color.equals(Colors.TURQUOISE.getColor());
     }
 
