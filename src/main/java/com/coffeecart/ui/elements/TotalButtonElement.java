@@ -3,6 +3,7 @@ package com.coffeecart.ui.elements;
 import com.coffeecart.ui.component.CartComponent;
 import com.coffeecart.ui.modal.PaymentDetailModal;
 import lombok.Getter;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -20,8 +21,6 @@ public class TotalButtonElement extends BaseElement {
     @Getter
     @FindBy(xpath = "//div[@class='modal']")
     WebElement modalElement;
-
-    CartComponent cartComponent;
 
     Actions actions;
 
@@ -43,6 +42,7 @@ public class TotalButtonElement extends BaseElement {
 
     public CartComponent hoverTotalButton(){
         actions.moveToElement(totalButton).perform();
+        updateElements();
         waitUntilElementVisible(cardComponentElement);
         return new CartComponent(driver, cardComponentElement);
     }
