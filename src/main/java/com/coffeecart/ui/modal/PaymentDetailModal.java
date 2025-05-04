@@ -110,7 +110,6 @@ public class PaymentDetailModal extends BaseModal {
         return this;
     }
 
-
     @Step("Close modal window")
     public MenuPage closeModalWindowOnMenuPage() {
         getCloseModalWindowButton().click();
