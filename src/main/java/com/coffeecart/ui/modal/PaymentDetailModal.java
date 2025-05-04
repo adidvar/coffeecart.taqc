@@ -125,10 +125,4 @@ public class PaymentDetailModal extends BaseModal {
         getCloseModalWindowButton().click();
         return new CartPage(driver);
     }
-
-    public boolean isBackgroundColorOfPaymentDetailModalMatch() {
-        String color = paymentModal.getCssValue("background-color");
-        return color.equals(Colors.TERRACOTTA.getColor()) || color.equals(Colors.TURQUOISE.getColor());
-    }
-
 }

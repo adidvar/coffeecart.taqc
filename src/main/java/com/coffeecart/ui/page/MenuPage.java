@@ -87,7 +87,6 @@ public class MenuPage extends BasePage {
         }
     }
 
-
     public boolean isBackgroundColorOfPaymentDetailModalMatch() {
         String color = paymentModalRoot.getCssValue("background-color");
 
