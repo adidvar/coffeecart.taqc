@@ -14,10 +14,13 @@ public class Drink {
 
     @Getter
     private String name;
+    @Getter
+    private final String chineseName;
 
-    public Drink(String name, DrinkIngredient... drinkIngredientList) {
+    public Drink(String name, String chineseName, DrinkIngredient... drinkIngredientList) {
         this.name = name;
-        drinkIngredients = new HashMap<String, DrinkIngredient>();
+        this.chineseName = chineseName;
+        drinkIngredients = new HashMap<>();
         for (DrinkIngredient d : drinkIngredientList) {
             drinkIngredients.put(d.getIngredient().getName(), d);
         }
