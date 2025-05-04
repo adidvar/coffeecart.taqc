@@ -18,10 +18,13 @@ public class SuccessfulPopUp extends Base {
     }
 
     public boolean isDisplayed() {
+        waitUntilElementVisible(successTitle);
         return successTitle.isDisplayed();
     }
     public String getSuccessTitleText() {
+        waitUntilElementVisible(successTitle);
         return successTitle.getText();
+
     }
 
 

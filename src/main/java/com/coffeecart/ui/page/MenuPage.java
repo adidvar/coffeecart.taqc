@@ -55,7 +55,7 @@ public class MenuPage extends BasePage {
         return new TotalButtonElement(driver,totalButtonRoot);
     }
 
-    public LuckyDayComponent getGetLackyDayComponent(){
+    public LuckyDayComponent getLuckyDayComponent(){
         return new LuckyDayComponent(driver,getLuckyDayModalRoot());
     }
 
