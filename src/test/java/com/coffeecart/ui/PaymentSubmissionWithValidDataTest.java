@@ -39,10 +39,11 @@ public class PaymentSubmissionWithValidDataTest extends BaseTestRunner {
         softAssert.assertEquals(paymentModal.getSubmitButtonText(), PaymentFormTexts.SUBMIT_BUTTON.getText(), "Submit button text mismatch");
         softAssert.assertFalse(paymentModal.isCheckboxMarked(), "Checkbox should be unchecked by default");
 
-//        softAssert.assertTrue(
-//                paymentModal.isBackgroundColorOfPaymentDetailModalMatch(),
-//                "Payment modal should have correct background color"
-//        );
+        boolean isMatch = new MenuPage(driver).isBackgroundColorOfPaymentDetailModalMatch();
+
+        softAssert.assertTrue(isMatch ,
+                "Payment modal should have correct background color"
+        );
 
         SuccessfulPopUp successPopup = paymentModal
                 .enterName(testValueProvider.getUserName())

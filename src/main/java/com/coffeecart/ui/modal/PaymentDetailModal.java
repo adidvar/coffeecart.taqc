@@ -1,6 +1,5 @@
 package com.coffeecart.ui.modal;
 
-import com.coffeecart.ui.data.Colors;
 import com.coffeecart.ui.page.CartPage;
 import com.coffeecart.ui.page.MenuPage;
 import io.qameta.allure.Step;
@@ -122,9 +121,5 @@ public class PaymentDetailModal extends BaseModal {
         return new CartPage(driver);
     }
 
-    public boolean isBackgroundColorOfPaymentDetailModalMatch() {
-        String color = getRootElement().getCssValue("background-color");
-        return color.equals(Colors.TERRACOTTA.getColor()) || color.equals(Colors.TURQUOISE.getColor());
-    }
 
 }
