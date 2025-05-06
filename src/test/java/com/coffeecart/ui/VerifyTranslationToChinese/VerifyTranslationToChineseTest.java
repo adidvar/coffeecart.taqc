@@ -1,6 +1,7 @@
 package com.coffeecart.ui.VerifyTranslationToChinese;
 
-import com.coffeecart.ui.data.DrinkEnum;
+
+import com.coffeecart.data.DrinkEnum;
 import com.coffeecart.ui.testrunners.BaseTestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
