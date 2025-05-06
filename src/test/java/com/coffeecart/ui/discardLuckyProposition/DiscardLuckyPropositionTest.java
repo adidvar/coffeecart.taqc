@@ -28,7 +28,8 @@ public class DiscardLuckyPropositionTest extends BaseTest {
         menuPage.clickDrink(flatWhite.getRecipe().getName())
                 .clickDrink(flatWhite.getRecipe().getName())
                 .clickDrink(flatWhite.getRecipe().getName())
-                .getGetLackyDayComponent().clickSkip()
+                .getLuckyDayComponent()
+                .clickSkip()
                 .getButtonElement()
                 .hoverTotalButton()
                 .getShortItems().stream()
@@ -39,7 +40,8 @@ public class DiscardLuckyPropositionTest extends BaseTest {
         menuPage.clickDrink(americano.getRecipe().getName())
                 .clickDrink(espressoMacchiato.getRecipe().getName())
                 .clickDrink(espresso.getRecipe().getName())
-                .getGetLackyDayComponent().clickSkip();
+                .getLuckyDayComponent()
+                .clickSkip();
 
         List<String> expected = new ArrayList<>(List.of(
                 americano.getRecipe().getName(),

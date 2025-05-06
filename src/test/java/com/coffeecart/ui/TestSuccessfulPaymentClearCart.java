@@ -27,12 +27,15 @@ public class TestSuccessfulPaymentClearCart extends BaseTest{
 
     @Test(dataProvider = "drinkNames")
     public void testSuccessfulPaymentClearPrice(String drinkName) {
-        double counter = new MenuPage(driver)
+        String text = new MenuPage(driver)
                 .clickDrink(drinkName)
                 .clickTotalButton()
                 .enterName(testValueProvider.getUserName())
                 .enterEmail(testValueProvider.getUserEmail())
                 .clickSubmitButtonWithValidInput()
+                .getSuccessTitleText();
+        Assert.assertEquals(text, "Success!");
+        double counter = new MenuPage(driver)
                 .getButtonElement()
                 .getMoneyCounter();
         Assert.assertEquals(counter,0.0,delta);
@@ -40,12 +43,14 @@ public class TestSuccessfulPaymentClearCart extends BaseTest{
 
     @Test(dataProvider = "drinkNames")
     public void testSuccessfulPaymentClearCart(String drinkName) {
-        int counter = new MenuPage(driver)
+        new MenuPage(driver)
                 .clickDrink(drinkName)
                 .clickTotalButton()
                 .enterName(testValueProvider.getUserName())
                 .enterEmail(testValueProvider.getUserEmail())
-                .clickSubmitButtonWithValidInput()
+                .clickSubmitButtonWithValidInput();
+
+        int counter = new MenuPage(driver)
                 .goToCartPage()
                 .getTotalNumberOfItemsFromCart();
         Assert.assertEquals(counter,0);
