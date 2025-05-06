@@ -87,4 +87,13 @@ private List<String> getIngredientNames(List<Ingredients> ingredientsList) {
                 .map(Ingredients::getName) // Берем только имена ингредиентов
                 .collect(Collectors.toList());
     }
+
 }
+
+
+
+
+
+
+
+

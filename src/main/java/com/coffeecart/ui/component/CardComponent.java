@@ -79,7 +79,6 @@ public class CardComponent extends BaseComponent {
         return cupComponent;
     }
 
-
     @Step("Click on cup")
     public MenuPage clickCup() {
         return cupComponent.clickOnCupBody();
