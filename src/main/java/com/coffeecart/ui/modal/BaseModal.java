@@ -17,3 +17,5 @@ public class BaseModal extends Base {
         PageFactory.initElements(new DefaultElementLocatorFactory(rootElement), this);
     }
 }
+
+

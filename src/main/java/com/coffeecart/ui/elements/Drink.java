@@ -4,23 +4,24 @@ import com.coffeecart.ui.data.Ingredients;
 import lombok.Getter;
 
 import java.text.NumberFormat;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Drink {
+
     @Getter
-    private Map<String, DrinkIngredient> drinkIngredients;
+    private Map<String, DrinkIngredient> drinkIngredients = new LinkedHashMap<>();
 
     @Getter
     private String name;
+
     @Getter
     private final String chineseName;
 
     public Drink(String name, String chineseName, DrinkIngredient... drinkIngredientList) {
         this.name = name;
         this.chineseName = chineseName;
-        drinkIngredients = new HashMap<>();
+        drinkIngredients = new LinkedHashMap<>();
         for (DrinkIngredient d : drinkIngredientList) {
             drinkIngredients.put(d.getIngredient().getName(), d);
         }
@@ -35,16 +36,11 @@ public class Drink {
     public int getIngredientQuantity(Ingredients ingredients) {
         return getIngredientQuantity(ingredients.getName());
     }
+    public List<Ingredients> getIngredients() {
+        return drinkIngredients.values()
+                .stream()
+                .map(DrinkIngredient::getIngredient)
+                .collect(Collectors.toList());
+    }
 
-//    public double getPrice() {
-//        double sum = 0.0;
-//        for (DrinkIngredient d : asCollection()) {
-//            sum += (double)d.getQuantity() * d.getIngredient().getUnit_cost();
-//        }
-//        return sum;
-//    }
-//    public String getFormattedPrice() {
-//        NumberFormat nf = NumberFormat.getCurrencyInstance();
-//        return nf.format(getPrice());
-//    }
 }

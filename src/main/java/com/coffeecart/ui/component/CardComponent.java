@@ -1,5 +1,7 @@
 package com.coffeecart.ui.component;
 
+import com.coffeecart.ui.page.MenuPage;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -69,8 +71,17 @@ public class CardComponent extends BaseComponent {
         return getName().equals(expectedName) && getPrice() == expectedPrice;
     }
 
+    public String getCardColor() {
+        return rootElement.getCssValue("background-color");
+    }
+
     public CupComponent getCupComponent() {
         return cupComponent;
+    }
+
+    @Step("Click on cup")
+    public MenuPage clickCup() {
+        return cupComponent.clickOnCupBody();
     }
 }
 
