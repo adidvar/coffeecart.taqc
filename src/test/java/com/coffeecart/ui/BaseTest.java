@@ -8,7 +8,6 @@ import com.coffeecart.ui.data.Ingredients;
 import com.coffeecart.ui.elements.Drink;
 
 import com.coffeecart.ui.testrunners.BaseTestRunner;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
