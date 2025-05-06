@@ -6,10 +6,10 @@ import com.coffeecart.ui.modal.PaymentDetailModal;
 import com.coffeecart.ui.modal.SuccessfulPopUp;
 import com.coffeecart.ui.page.MenuPage;
 import com.coffeecart.ui.testrunners.BaseTestRunner;
+import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Issue;
 import io.qameta.allure.Owner;
-import jdk.jfr.Description;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
