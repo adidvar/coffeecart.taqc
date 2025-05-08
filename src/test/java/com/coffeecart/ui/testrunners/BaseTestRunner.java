@@ -34,8 +34,33 @@ public class BaseTestRunner {
 
 //        options.addArguments(" --profile-directory=Default");
 
+
+        // Get chrome options from system properties (passed from Maven)
+        String chromeOptionsArg = System.getProperty("chrome.options", "");
+        if (!chromeOptionsArg.isEmpty()) {
+            for (String option : chromeOptionsArg.split(",")) {
+                options.addArguments(option);
+            }
+        } else {
+            // Default options if not specified via system properties
+            options.addArguments("--no-sandbox");
+            options.addArguments("--headless=new");
+            options.addArguments("--disable-gpu");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--remote-allow-origins=*");
+        }
+
+        // Set a unique user data directory
+        String userDataDir = System.getProperty("user.data.dir");
+        if (userDataDir != null && !userDataDir.isEmpty()) {
+            options.addArguments("--user-data-dir=" + userDataDir);
+        }
+
+        // Create a new ChromeDriver with our options
         driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
+
+//        driver = new ChromeDriver(options);
+//        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(testValueProvider.getImplicitlyWait()));
 
         localStorageJS = new LocalStorageJS(driver);
