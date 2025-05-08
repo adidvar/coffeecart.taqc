@@ -1,9 +1,9 @@
 name: Java CI with Allure Report
 on:
   push:
-    branches: [master]
+    branches: [main, dev]
   pull_request:
-    branches: [master]
+    branches: [main, dev]
   # Manual
   workflow_dispatch:
 
