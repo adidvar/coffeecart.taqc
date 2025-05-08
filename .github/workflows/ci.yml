@@ -1,39 +1,67 @@
-name: Generate and Deploy Allure Report
-
+name: Java CI with Allure Report
 on:
   push:
-    branches: [main, master]
+    branches: [master]
   pull_request:
-    branches: [main, master]
-  # Allows you to run this workflow manually from the Actions tab
+    branches: [master]
+  # Manual
   workflow_dispatch:
 
 jobs:
-  build-and-test:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "21"
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Build with Maven (skip tests)
+        run: mvn clean install -DskipTests --batch-mode --no-transfer-progress
+
+  run-tests:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+      && github.event_name == 'push'
+
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
-      - uses: actions/checkout@v3
-
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Set up JDK 21
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
-          java-version: "21"
           distribution: "temurin"
-          cache: maven
-
+          java-version: "21"
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@latest
-
       - name: Setup ChromeDriver
         uses: nanasess/setup-chromedriver@master
-
       - name: Start ChromeDriver
         run: |
           # Start chromedriver in the background
           chromedriver --port=4444 &
-          sleep 3 # give chromedriver time to start
-
+          sleep 3 #
       - name: Build and run tests with Maven
         run: |
           # Pass system properties to fix Chrome issues
@@ -43,20 +71,8 @@ jobs:
             -Duser.data.dir=/tmp/chrome-data-$(date +%s)
         continue-on-error: true
 
-      - name: Create gh-pages branch if not exists
-        run: |
-          git fetch
-          if ! git ls-remote --heads origin gh-pages | grep gh-pages; then
-            git checkout --orphan gh-pages
-            git reset --hard
-            git commit --allow-empty -m "Initialize gh-pages branch"
-            git push origin gh-pages
-            git checkout ${GITHUB_REF##*/}
-          fi
-
       - name: Get Allure history
         uses: actions/checkout@v3
-        if: always()
         continue-on-error: true
         with:
           ref: gh-pages
@@ -64,7 +80,6 @@ jobs:
 
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
-        if: always()
         with:
           allure_results: target/allure-results
           allure_history: allure-history
@@ -73,7 +88,6 @@ jobs:
           keep_reports: 20
 
       - name: Deploy report to GitHub Pages
-        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
