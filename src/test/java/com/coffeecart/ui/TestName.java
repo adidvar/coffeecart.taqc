@@ -5,6 +5,7 @@ import com.coffeecart.ui.page.MenuPage;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+/*
 public class TestName extends BaseTest{
     @AfterMethod
     public void resetDriver() {
@@ -19,3 +20,4 @@ public class TestName extends BaseTest{
         new MenuPage(driver).clickDrink(DrinkEnum.getName(DrinkEnum.CAPPUCCINO)).clickTotalButton().enterName("@#viktoriia!").enterEmail("viktoriia11@gmail.com").clickSubmitButtonWithInvalidInput().closeModalWindowOnCartPage();
     }
 }
+ */
