@@ -24,6 +24,18 @@ jobs:
 
       - name: Build and run tests with Maven
         run: mvn clean test
+        continue-on-error: true
+
+      - name: Create gh-pages branch if not exists
+        run: |
+          git fetch
+          if ! git ls-remote --heads origin gh-pages | grep gh-pages; then
+            git checkout --orphan gh-pages
+            git reset --hard
+            git commit --allow-empty -m "Initialize gh-pages branch"
+            git push origin gh-pages
+            git checkout ${GITHUB_REF##*/}
+          fi
 
       - name: Get Allure history
         uses: actions/checkout@v3
