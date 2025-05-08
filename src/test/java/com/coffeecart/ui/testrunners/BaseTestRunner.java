@@ -37,13 +37,6 @@ public class BaseTestRunner {
             for (String option : chromeOptionsArg.split(",")) {
                 options.addArguments(option);
             }
-        } else {
-            // Default options if not specified via system properties
-            options.addArguments("--no-sandbox");
-            options.addArguments("--headless=new");
-            options.addArguments("--disable-gpu");
-            options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--remote-allow-origins=*");
         }
 
         String userDataDir = System.getProperty("user.data.dir");
